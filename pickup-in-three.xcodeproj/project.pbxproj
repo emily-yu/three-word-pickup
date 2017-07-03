@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		A1010E1F1F0A0DB500C3E5E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E1E1F0A0DB500C3E5E8 /* AppDelegate.swift */; };
-		A1010E211F0A0DB500C3E5E8 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E201F0A0DB500C3E5E8 /* FirstViewController.swift */; };
-		A1010E231F0A0DB500C3E5E8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E221F0A0DB500C3E5E8 /* SecondViewController.swift */; };
+		A1010E211F0A0DB500C3E5E8 /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E201F0A0DB500C3E5E8 /* CreateController.swift */; };
+		A1010E231F0A0DB500C3E5E8 /* RateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E221F0A0DB500C3E5E8 /* RateController.swift */; };
 		A1010E261F0A0DB500C3E5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1010E241F0A0DB500C3E5E8 /* Main.storyboard */; };
 		A1010E281F0A0DB500C3E5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1010E271F0A0DB500C3E5E8 /* Assets.xcassets */; };
 		A1010E2B1F0A0DB500C3E5E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1010E291F0A0DB500C3E5E8 /* LaunchScreen.storyboard */; };
 		A1010E361F0A0DB500C3E5E8 /* pickup_in_threeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E351F0A0DB500C3E5E8 /* pickup_in_threeTests.swift */; };
 		A1010E411F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E401F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift */; };
+		A16DCDAB1F0AF7BD0058C27E /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DCDAA1F0AF7BD0058C27E /* SearchController.swift */; };
+		A16DCDAD1F0AF7F50058C27E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DCDAC1F0AF7F50058C27E /* ProfileController.swift */; };
+		A16DCDAF1F0AF8240058C27E /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DCDAE1F0AF8240058C27E /* AuthController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +40,8 @@
 /* Begin PBXFileReference section */
 		A1010E1B1F0A0DB500C3E5E8 /* pickup-in-three.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pickup-in-three.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1010E1E1F0A0DB500C3E5E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A1010E201F0A0DB500C3E5E8 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		A1010E221F0A0DB500C3E5E8 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A1010E201F0A0DB500C3E5E8 /* CreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
+		A1010E221F0A0DB500C3E5E8 /* RateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateController.swift; sourceTree = "<group>"; };
 		A1010E251F0A0DB500C3E5E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1010E271F0A0DB500C3E5E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1010E2A1F0A0DB500C3E5E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		A1010E3C1F0A0DB500C3E5E8 /* pickup-in-threeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pickup-in-threeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1010E401F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickup_in_threeUITests.swift; sourceTree = "<group>"; };
 		A1010E421F0A0DB500C3E5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A16DCDAA1F0AF7BD0058C27E /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		A16DCDAC1F0AF7F50058C27E /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		A16DCDAE1F0AF8240058C27E /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				A1010E1E1F0A0DB500C3E5E8 /* AppDelegate.swift */,
-				A1010E201F0A0DB500C3E5E8 /* FirstViewController.swift */,
-				A1010E221F0A0DB500C3E5E8 /* SecondViewController.swift */,
+				A16DCDAE1F0AF8240058C27E /* AuthController.swift */,
+				A1010E201F0A0DB500C3E5E8 /* CreateController.swift */,
+				A1010E221F0A0DB500C3E5E8 /* RateController.swift */,
+				A16DCDAA1F0AF7BD0058C27E /* SearchController.swift */,
+				A16DCDAC1F0AF7F50058C27E /* ProfileController.swift */,
 				A1010E241F0A0DB500C3E5E8 /* Main.storyboard */,
 				A1010E271F0A0DB500C3E5E8 /* Assets.xcassets */,
 				A1010E291F0A0DB500C3E5E8 /* LaunchScreen.storyboard */,
@@ -265,9 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1010E231F0A0DB500C3E5E8 /* SecondViewController.swift in Sources */,
+				A16DCDAD1F0AF7F50058C27E /* ProfileController.swift in Sources */,
+				A16DCDAF1F0AF8240058C27E /* AuthController.swift in Sources */,
+				A1010E231F0A0DB500C3E5E8 /* RateController.swift in Sources */,
 				A1010E1F1F0A0DB500C3E5E8 /* AppDelegate.swift in Sources */,
-				A1010E211F0A0DB500C3E5E8 /* FirstViewController.swift in Sources */,
+				A1010E211F0A0DB500C3E5E8 /* CreateController.swift in Sources */,
+				A16DCDAB1F0AF7BD0058C27E /* SearchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +528,7 @@
 				A1010E471F0A0DB500C3E5E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1010E481F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-threeTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +537,7 @@
 				A1010E4A1F0A0DB500C3E5E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1010E4B1F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-threeUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +546,7 @@
 				A1010E4D1F0A0DB500C3E5E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

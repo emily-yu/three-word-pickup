@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1010E1F1F0A0DB500C3E5E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E1E1F0A0DB500C3E5E8 /* AppDelegate.swift */; };
+		A1010E211F0A0DB500C3E5E8 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E201F0A0DB500C3E5E8 /* FirstViewController.swift */; };
+		A1010E231F0A0DB500C3E5E8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E221F0A0DB500C3E5E8 /* SecondViewController.swift */; };
+		A1010E261F0A0DB500C3E5E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1010E241F0A0DB500C3E5E8 /* Main.storyboard */; };
+		A1010E281F0A0DB500C3E5E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1010E271F0A0DB500C3E5E8 /* Assets.xcassets */; };
+		A1010E2B1F0A0DB500C3E5E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1010E291F0A0DB500C3E5E8 /* LaunchScreen.storyboard */; };
+		A1010E361F0A0DB500C3E5E8 /* pickup_in_threeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E351F0A0DB500C3E5E8 /* pickup_in_threeTests.swift */; };
+		A1010E411F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1010E401F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1010E321F0A0DB500C3E5E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1010E131F0A0DB500C3E5E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1010E1A1F0A0DB500C3E5E8;
+			remoteInfo = "pickup-in-three";
+		};
+		A1010E3D1F0A0DB500C3E5E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1010E131F0A0DB500C3E5E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1010E1A1F0A0DB500C3E5E8;
+			remoteInfo = "pickup-in-three";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A1010E1B1F0A0DB500C3E5E8 /* pickup-in-three.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pickup-in-three.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1010E1E1F0A0DB500C3E5E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1010E201F0A0DB500C3E5E8 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		A1010E221F0A0DB500C3E5E8 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A1010E251F0A0DB500C3E5E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A1010E271F0A0DB500C3E5E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1010E2A1F0A0DB500C3E5E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1010E2C1F0A0DB500C3E5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1010E311F0A0DB500C3E5E8 /* pickup-in-threeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pickup-in-threeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1010E351F0A0DB500C3E5E8 /* pickup_in_threeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickup_in_threeTests.swift; sourceTree = "<group>"; };
+		A1010E371F0A0DB500C3E5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1010E3C1F0A0DB500C3E5E8 /* pickup-in-threeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pickup-in-threeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1010E401F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickup_in_threeUITests.swift; sourceTree = "<group>"; };
+		A1010E421F0A0DB500C3E5E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1010E181F0A0DB500C3E5E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1010E2E1F0A0DB500C3E5E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1010E391F0A0DB500C3E5E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1010E121F0A0DB500C3E5E8 = {
+			isa = PBXGroup;
+			children = (
+				A1010E1D1F0A0DB500C3E5E8 /* pickup-in-three */,
+				A1010E341F0A0DB500C3E5E8 /* pickup-in-threeTests */,
+				A1010E3F1F0A0DB500C3E5E8 /* pickup-in-threeUITests */,
+				A1010E1C1F0A0DB500C3E5E8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1010E1C1F0A0DB500C3E5E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1010E1B1F0A0DB500C3E5E8 /* pickup-in-three.app */,
+				A1010E311F0A0DB500C3E5E8 /* pickup-in-threeTests.xctest */,
+				A1010E3C1F0A0DB500C3E5E8 /* pickup-in-threeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1010E1D1F0A0DB500C3E5E8 /* pickup-in-three */ = {
+			isa = PBXGroup;
+			children = (
+				A1010E1E1F0A0DB500C3E5E8 /* AppDelegate.swift */,
+				A1010E201F0A0DB500C3E5E8 /* FirstViewController.swift */,
+				A1010E221F0A0DB500C3E5E8 /* SecondViewController.swift */,
+				A1010E241F0A0DB500C3E5E8 /* Main.storyboard */,
+				A1010E271F0A0DB500C3E5E8 /* Assets.xcassets */,
+				A1010E291F0A0DB500C3E5E8 /* LaunchScreen.storyboard */,
+				A1010E2C1F0A0DB500C3E5E8 /* Info.plist */,
+			);
+			path = "pickup-in-three";
+			sourceTree = "<group>";
+		};
+		A1010E341F0A0DB500C3E5E8 /* pickup-in-threeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1010E351F0A0DB500C3E5E8 /* pickup_in_threeTests.swift */,
+				A1010E371F0A0DB500C3E5E8 /* Info.plist */,
+			);
+			path = "pickup-in-threeTests";
+			sourceTree = "<group>";
+		};
+		A1010E3F1F0A0DB500C3E5E8 /* pickup-in-threeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A1010E401F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift */,
+				A1010E421F0A0DB500C3E5E8 /* Info.plist */,
+			);
+			path = "pickup-in-threeUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1010E1A1F0A0DB500C3E5E8 /* pickup-in-three */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1010E451F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-three" */;
+			buildPhases = (
+				A1010E171F0A0DB500C3E5E8 /* Sources */,
+				A1010E181F0A0DB500C3E5E8 /* Frameworks */,
+				A1010E191F0A0DB500C3E5E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "pickup-in-three";
+			productName = "pickup-in-three";
+			productReference = A1010E1B1F0A0DB500C3E5E8 /* pickup-in-three.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A1010E301F0A0DB500C3E5E8 /* pickup-in-threeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1010E481F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-threeTests" */;
+			buildPhases = (
+				A1010E2D1F0A0DB500C3E5E8 /* Sources */,
+				A1010E2E1F0A0DB500C3E5E8 /* Frameworks */,
+				A1010E2F1F0A0DB500C3E5E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1010E331F0A0DB500C3E5E8 /* PBXTargetDependency */,
+			);
+			name = "pickup-in-threeTests";
+			productName = "pickup-in-threeTests";
+			productReference = A1010E311F0A0DB500C3E5E8 /* pickup-in-threeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1010E3B1F0A0DB500C3E5E8 /* pickup-in-threeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1010E4B1F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-threeUITests" */;
+			buildPhases = (
+				A1010E381F0A0DB500C3E5E8 /* Sources */,
+				A1010E391F0A0DB500C3E5E8 /* Frameworks */,
+				A1010E3A1F0A0DB500C3E5E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1010E3E1F0A0DB500C3E5E8 /* PBXTargetDependency */,
+			);
+			name = "pickup-in-threeUITests";
+			productName = "pickup-in-threeUITests";
+			productReference = A1010E3C1F0A0DB500C3E5E8 /* pickup-in-threeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1010E131F0A0DB500C3E5E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Emily;
+				TargetAttributes = {
+					A1010E1A1F0A0DB500C3E5E8 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HSYD3ZBRT6;
+						ProvisioningStyle = Automatic;
+					};
+					A1010E301F0A0DB500C3E5E8 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HSYD3ZBRT6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A1010E1A1F0A0DB500C3E5E8;
+					};
+					A1010E3B1F0A0DB500C3E5E8 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HSYD3ZBRT6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A1010E1A1F0A0DB500C3E5E8;
+					};
+				};
+			};
+			buildConfigurationList = A1010E161F0A0DB500C3E5E8 /* Build configuration list for PBXProject "pickup-in-three" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1010E121F0A0DB500C3E5E8;
+			productRefGroup = A1010E1C1F0A0DB500C3E5E8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1010E1A1F0A0DB500C3E5E8 /* pickup-in-three */,
+				A1010E301F0A0DB500C3E5E8 /* pickup-in-threeTests */,
+				A1010E3B1F0A0DB500C3E5E8 /* pickup-in-threeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1010E191F0A0DB500C3E5E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1010E2B1F0A0DB500C3E5E8 /* LaunchScreen.storyboard in Resources */,
+				A1010E281F0A0DB500C3E5E8 /* Assets.xcassets in Resources */,
+				A1010E261F0A0DB500C3E5E8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1010E2F1F0A0DB500C3E5E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1010E3A1F0A0DB500C3E5E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1010E171F0A0DB500C3E5E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1010E231F0A0DB500C3E5E8 /* SecondViewController.swift in Sources */,
+				A1010E1F1F0A0DB500C3E5E8 /* AppDelegate.swift in Sources */,
+				A1010E211F0A0DB500C3E5E8 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1010E2D1F0A0DB500C3E5E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1010E361F0A0DB500C3E5E8 /* pickup_in_threeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1010E381F0A0DB500C3E5E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1010E411F0A0DB500C3E5E8 /* pickup_in_threeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1010E331F0A0DB500C3E5E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1010E1A1F0A0DB500C3E5E8 /* pickup-in-three */;
+			targetProxy = A1010E321F0A0DB500C3E5E8 /* PBXContainerItemProxy */;
+		};
+		A1010E3E1F0A0DB500C3E5E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1010E1A1F0A0DB500C3E5E8 /* pickup-in-three */;
+			targetProxy = A1010E3D1F0A0DB500C3E5E8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A1010E241F0A0DB500C3E5E8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1010E251F0A0DB500C3E5E8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A1010E291F0A0DB500C3E5E8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1010E2A1F0A0DB500C3E5E8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A1010E431F0A0DB500C3E5E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1010E441F0A0DB500C3E5E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1010E461F0A0DB500C3E5E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "pickup-in-three/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.pickup-in-three";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A1010E471F0A0DB500C3E5E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "pickup-in-three/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.pickup-in-three";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A1010E491F0A0DB500C3E5E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "pickup-in-threeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.pickup-in-threeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pickup-in-three.app/pickup-in-three";
+			};
+			name = Debug;
+		};
+		A1010E4A1F0A0DB500C3E5E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "pickup-in-threeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.pickup-in-threeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pickup-in-three.app/pickup-in-three";
+			};
+			name = Release;
+		};
+		A1010E4C1F0A0DB500C3E5E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "pickup-in-threeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.pickup-in-threeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "pickup-in-three";
+			};
+			name = Debug;
+		};
+		A1010E4D1F0A0DB500C3E5E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = HSYD3ZBRT6;
+				INFOPLIST_FILE = "pickup-in-threeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eyu.pickup-in-threeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "pickup-in-three";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1010E161F0A0DB500C3E5E8 /* Build configuration list for PBXProject "pickup-in-three" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1010E431F0A0DB500C3E5E8 /* Debug */,
+				A1010E441F0A0DB500C3E5E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1010E451F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-three" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1010E461F0A0DB500C3E5E8 /* Debug */,
+				A1010E471F0A0DB500C3E5E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A1010E481F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-threeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1010E491F0A0DB500C3E5E8 /* Debug */,
+				A1010E4A1F0A0DB500C3E5E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A1010E4B1F0A0DB500C3E5E8 /* Build configuration list for PBXNativeTarget "pickup-in-threeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1010E4C1F0A0DB500C3E5E8 /* Debug */,
+				A1010E4D1F0A0DB500C3E5E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1010E131F0A0DB500C3E5E8 /* Project object */;
+}

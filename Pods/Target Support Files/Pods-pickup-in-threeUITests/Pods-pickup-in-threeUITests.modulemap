@@ -1,0 +1,6 @@
+framework module Pods_pickup_in_threeUITests {
+  umbrella header "Pods-pickup-in-threeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

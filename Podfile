@@ -8,7 +8,7 @@ target 'pickup-in-three' do
   # Pods for pickup-in-three
 pod 'Firebase/Core'
 pod 'Firebase/Auth’
-
+pod 'Firebase/Database'
 
   target 'pickup-in-threeTests' do
     inherit! :search_paths

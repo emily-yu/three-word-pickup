@@ -8,14 +8,32 @@
 
 import UIKit
 import Foundation
+import Firebase
 
 class RateController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    var ref: FIRDatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference()
+        self.loadData()
+//        print("loaded")
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func loadData() {
+        print("asdjklfajslkfjaslfkjlsadjfklasd")
+//        ref = FIRDatabase.database().reference()
+        ref.observe(.value, with: {
+            snapshot in
+            var restaurantNames = [String]()
+            for restaurant in snapshot.children {
+                restaurantNames.append((restaurant as AnyObject).key)
+            }
+            print(restaurantNames)
+        })
     }
 
     override func didReceiveMemoryWarning() {

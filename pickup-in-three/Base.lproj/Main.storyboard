@@ -399,6 +399,14 @@
                                     <segue destination="fgo-Yx-TXh" kind="show" id="wgG-xe-LaS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CS9-pt-bqR">
+                                <rect key="frame" x="121" y="604" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="im lazy my dude"/>
+                                <connections>
+                                    <segue destination="49e-Tb-3d3" kind="show" id="mon-0G-kgE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

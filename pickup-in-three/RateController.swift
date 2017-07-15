@@ -28,6 +28,12 @@ class RateController: UIViewController {
         self.loadData()
     }
     
+    @IBAction func upvote(_ sender: Any) {
+    }
+    
+    @IBAction func downvote(_ sender: Any) {
+    }
+    
     func loadData() {
         
         let likeRef = ref.child("lines")
@@ -81,5 +87,8 @@ class RateController: UIViewController {
 }
 
 class RateCell: UITableViewCell {
+    @IBOutlet var likes: UILabel!
+    @IBOutlet var username: UILabel!
+    @IBOutlet var line: UITextView!
 }
 

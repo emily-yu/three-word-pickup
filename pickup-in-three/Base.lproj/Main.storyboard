@@ -121,11 +121,17 @@
                                                     <rect key="frame" x="18" y="18" width="47" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="upvote"/>
+                                                    <connections>
+                                                        <action selector="upvote:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="xaT-oq-EGT"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joo-rO-Oag">
                                                     <rect key="frame" x="18" y="62" width="67" height="12"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="downvote"/>
+                                                    <connections>
+                                                        <action selector="downvote:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="iT3-wu-4I2"/>
+                                                    </connections>
                                                 </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kbY-mx-rWk">
                                                     <rect key="frame" x="88" y="25" width="279" height="282"/>
@@ -151,6 +157,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="likes" destination="w5w-uy-U0a" id="ceI-Un-NBK"/>
+                                            <outlet property="line" destination="kbY-mx-rWk" id="Cx7-pQ-bwE"/>
+                                            <outlet property="username" destination="9Ar-Lm-gbm" id="QDL-IK-L5u"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

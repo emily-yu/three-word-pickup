@@ -63,6 +63,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -98,16 +99,14 @@ class RegisterController: UIViewController {
                     // set user details
                     self.ref.child("users").child((user?.uid)!).setValue([
                         "username": self.username.text!,
-//                        "lastName": self.lastNameField.text!,
-//                        "revealPoints": 0,
-//                        "groups": [
-//                            "0": "Global Community"
-//                        ],
-//                        "myPosts": [
-//                            "0": 0
-//                        ],
-//                        "base64string": "default"
-                        ])
+                        "favorites": [
+                            "0": "default",
+                        ],
+                        "lines" : [
+                            "0": "default",
+                        ],
+                        "base64string": "default",
+                    ])
                     
                     var storyboard = UIStoryboard(name: "Main", bundle: nil)
                     var ivc = storyboard.instantiateViewController(withIdentifier: "Home")
@@ -130,6 +129,7 @@ class RegisterController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view, typically from a nib.
     }
     

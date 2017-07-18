@@ -10,10 +10,11 @@ import UIKit
 import Foundation
 import Firebase
 
-class RateController: UIViewController {
+class RateController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
     var ref: FIRDatabaseReference!
+    let cellReuseIdentifier = "cell"
     
     // line data
     var lineText = [String]()
@@ -26,6 +27,10 @@ class RateController: UIViewController {
         ref = FIRDatabase.database().reference()
         super.viewDidLoad()
         self.loadData()
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     @IBAction func upvote(_ sender: Any) {
@@ -67,15 +72,27 @@ class RateController: UIViewController {
                         self.lineKey.append((line as AnyObject).value)
                     }
                     if (self.lineLike.count == count) {
-                        // reload data
-                        print(self.lineText)
-                        print(self.lineLike)
-                        print(self.lineUser)
-                        print(self.lineKey)
+                        self.tableView.reloadData()
                     }
                 })
             }
         })
+    }
+    
+    // number of rows in table view
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return lineText.count
+    }
+    
+    // create a cell for each table view row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:RateCell = self.tableView.dequeueReusableCell(withIdentifier: "RateCell") as! RateCell
+
+        cell.likes.text = String(lineLike[indexPath.row])
+        cell.username.text = lineUser[indexPath.row]
+        cell.line.text = lineText[indexPath.row]
+        
+        return cell
     }
 
     override func didReceiveMemoryWarning() {

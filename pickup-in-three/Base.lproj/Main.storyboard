@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CM7-yF-gjz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CM7-yF-gjz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -110,52 +111,72 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="210" id="nPF-84-Jwi" customClass="RateCell" customModule="pickup_in_three" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RateCell" rowHeight="210" id="nPF-84-Jwi" customClass="RateCell" customModule="pickup_in_three" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nPF-84-Jwi" id="Gb3-yX-Ymc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDG-O3-7Xg">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDG-O3-7Xg">
                                                     <rect key="frame" x="18" y="18" width="47" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="YKA-D0-Mzv"/>
+                                                    </constraints>
                                                     <state key="normal" title="upvote"/>
                                                     <connections>
                                                         <action selector="upvote:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="xaT-oq-EGT"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joo-rO-Oag">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joo-rO-Oag">
                                                     <rect key="frame" x="18" y="62" width="67" height="12"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="hLQ-gT-cPW"/>
+                                                    </constraints>
                                                     <state key="normal" title="downvote"/>
                                                     <connections>
                                                         <action selector="downvote:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="iT3-wu-4I2"/>
                                                     </connections>
                                                 </button>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kbY-mx-rWk">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbY-mx-rWk">
                                                     <rect key="frame" x="88" y="25" width="279" height="282"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <mutableString key="text">a really nice pickup line AAHAHAAHLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="282" id="png-d8-cSP"/>
+                                                    </constraints>
+                                                    <string key="text">a really nice pickup line AAHAHAAHLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5w-uy-U0a">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5w-uy-U0a">
                                                     <rect key="frame" x="18" y="37" width="67" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ar-Lm-gbm">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ar-Lm-gbm">
                                                     <rect key="frame" x="93" y="16" width="254" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9Ar-Lm-gbm" firstAttribute="leading" secondItem="TDG-O3-7Xg" secondAttribute="trailing" constant="28" id="15i-Sx-ZrE"/>
+                                                <constraint firstItem="kbY-mx-rWk" firstAttribute="top" secondItem="Gb3-yX-Ymc" secondAttribute="topMargin" constant="17" id="83u-8y-dSD"/>
+                                                <constraint firstItem="TDG-O3-7Xg" firstAttribute="leading" secondItem="w5w-uy-U0a" secondAttribute="leading" id="Bhg-mR-eKe"/>
+                                                <constraint firstItem="w5w-uy-U0a" firstAttribute="top" secondItem="TDG-O3-7Xg" secondAttribute="bottom" constant="3" id="EOR-jx-Oh4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9Ar-Lm-gbm" secondAttribute="trailing" constant="20" id="GHX-YA-rkc"/>
+                                                <constraint firstItem="TDG-O3-7Xg" firstAttribute="leading" secondItem="Gb3-yX-Ymc" secondAttribute="leadingMargin" constant="10" id="Hmx-m7-nxs"/>
+                                                <constraint firstItem="TDG-O3-7Xg" firstAttribute="top" secondItem="Gb3-yX-Ymc" secondAttribute="topMargin" constant="10" id="Ltg-wU-sp6"/>
+                                                <constraint firstItem="w5w-uy-U0a" firstAttribute="leading" secondItem="joo-rO-Oag" secondAttribute="leading" id="dHK-O7-ANA"/>
+                                                <constraint firstItem="9Ar-Lm-gbm" firstAttribute="top" secondItem="Gb3-yX-Ymc" secondAttribute="topMargin" constant="8" id="ebz-HF-e54"/>
+                                                <constraint firstItem="joo-rO-Oag" firstAttribute="top" secondItem="w5w-uy-U0a" secondAttribute="bottom" constant="4" id="h4v-00-V2U"/>
+                                                <constraint firstItem="kbY-mx-rWk" firstAttribute="leading" secondItem="w5w-uy-U0a" secondAttribute="trailing" constant="3" id="kzq-2p-JGO"/>
+                                                <constraint firstItem="kbY-mx-rWk" firstAttribute="trailing" secondItem="Gb3-yX-Ymc" secondAttribute="trailingMargin" id="nt0-av-v6a"/>
+                                                <constraint firstItem="kbY-mx-rWk" firstAttribute="leading" secondItem="TDG-O3-7Xg" secondAttribute="trailing" constant="23" id="sqn-uC-mwC"/>
+                                                <constraint firstItem="TDG-O3-7Xg" firstAttribute="centerY" secondItem="9Ar-Lm-gbm" secondAttribute="centerY" id="vrq-hr-hc6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="likes" destination="w5w-uy-U0a" id="ceI-Un-NBK"/>

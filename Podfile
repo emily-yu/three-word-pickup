@@ -9,6 +9,7 @@ target 'pickup-in-three' do
 pod 'Firebase/Core'
 pod 'Firebase/Auth’
 pod 'Firebase/Database'
+pod 'Alamofire', '~> 4.0.1'
 
   target 'pickup-in-threeTests' do
     inherit! :search_paths

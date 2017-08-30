@@ -8,24 +8,52 @@
 
 import UIKit
 import Foundation
+import Alamofire
 
 class CreateController: UIViewController {
 
     @IBOutlet var textField: UITextView!
     
     @IBOutlet var word1: UIButton!
+    
+    
     @IBAction func word1(_ sender: Any) {
+        self.textField.text = "\(textField.text!) \(self.word1.currentTitle!)";
     }
     
     @IBOutlet var word2: UIButton!
     @IBAction func word2(_ sender: Any) {
+        self.textField.text = "\(textField.text!) \(self.word2.currentTitle!)";
     }
     
     @IBOutlet var word3: UIButton!
     @IBAction func word3(_ sender: Any) {
+        // append word to textfield.content
+        self.textField.text = "\(textField.text!) \(self.word3.currentTitle!)";
+        print(word3.currentTitle!)
     }
     
     @IBAction func nextButton(_ sender: Any) {
+        // retrieve three random words
+        // replace word1.content, word2.content, word3.content
+    }
+    
+    @IBAction func submitButton(_ sender: Any) {
+        print(textField.text)
+        if  (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) &&
+            (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) &&
+            (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) {
+            print("TODO: Submit content to Firebase")
+            // appFunctions().incrementPoints();
+        }
+        else {
+            let alertController = UIAlertController(title: "Error", message: "Please use the above words to create your pickup line.", preferredStyle: .alert);
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil);
+            alertController.addAction(defaultAction);
+            
+            present(alertController, animated: true, completion: nil);
+        }
     }
     
     override func viewDidLoad() {

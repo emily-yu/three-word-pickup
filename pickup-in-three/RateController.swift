@@ -11,10 +11,10 @@ import Foundation
 import Firebase
 
 class RateController: UIViewController, UITableViewDelegate,UITableViewDataSource {
-
+    
     @IBOutlet var tableView: UITableView!
     var ref: FIRDatabaseReference!
-    
+
     // line data
     var lineText = [String]()
     var lineLike = [Int]()

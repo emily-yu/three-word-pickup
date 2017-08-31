@@ -9,14 +9,13 @@
 import UIKit
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class CreateController: UIViewController {
 
     @IBOutlet var textField: UITextView!
     
     @IBOutlet var word1: UIButton!
-    
-    
     @IBAction func word1(_ sender: Any) {
         self.textField.text = "\(textField.text!) \(self.word1.currentTitle!)";
     }
@@ -39,10 +38,15 @@ class CreateController: UIViewController {
     }
     
     @IBAction func submitButton(_ sender: Any) {
-        print(textField.text)
         if  (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) &&
             (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) &&
             (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) {
+            
+            // Generate new set of words
+            appFunctions().requestRandomWord(button: word1);
+            appFunctions().requestRandomWord(button: word2);
+            appFunctions().requestRandomWord(button: word3);
+            
             print("TODO: Submit content to Firebase")
             // appFunctions().incrementPoints();
         }

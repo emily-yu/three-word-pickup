@@ -10,6 +10,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth’
 pod 'Firebase/Database'
 pod 'Alamofire', '~> 4.0.1'
+pod 'SwiftyJSON', '>= 2.1.3'
 
   target 'pickup-in-threeTests' do
     inherit! :search_paths

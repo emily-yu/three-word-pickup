@@ -15,6 +15,10 @@ class CreateController: UIViewController {
 
     @IBOutlet var textField: UITextView!
     
+    @IBAction func refresh(_ sender: Any) {
+        refreshAll();
+    }
+    
     @IBOutlet var word1: UIButton!
     @IBAction func word1(_ sender: Any) {
         self.textField.text = "\(textField.text!) \(self.word1.currentTitle!)";
@@ -43,9 +47,7 @@ class CreateController: UIViewController {
             (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) {
             
             // Generate new set of words
-            appFunctions().requestRandomWord(button: word1);
-            appFunctions().requestRandomWord(button: word2);
-            appFunctions().requestRandomWord(button: word3);
+            refreshAll();
             
             print("TODO: Submit content to Firebase")
             // appFunctions().incrementPoints();
@@ -60,9 +62,16 @@ class CreateController: UIViewController {
         }
     }
     
+    // Generate new set of words
+    func refreshAll() {
+        appFunctions().requestRandomWord(button: word1);
+        appFunctions().requestRandomWord(button: word2);
+        appFunctions().requestRandomWord(button: word3);
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        refreshAll();
     }
 
     override func didReceiveMemoryWarning() {

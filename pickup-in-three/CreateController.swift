@@ -9,10 +9,12 @@
 import UIKit
 import Foundation
 import Alamofire
+import Firebase
 import SwiftyJSON
 
 class CreateController: UIViewController {
-
+    
+    var ref: FIRDatabaseReference!
     @IBOutlet var scrollView: UIScrollView!
     
     // Random Word creation
@@ -36,9 +38,17 @@ class CreateController: UIViewController {
         if  (textField.text.lowercased().range(of: (word1.currentTitle?.lowercased())!) != nil) &&
             (textField.text.lowercased().range(of: (word2.currentTitle?.lowercased())!) != nil) &&
             (textField.text.lowercased().range(of: (word3.currentTitle?.lowercased())!) != nil) {
+            
             refreshAll(); // Generate new set of words
-            // appFunctions().incrementPoints();
-            print("TODO: Submit to Firebase");
+            appFunctions().incrementPoints();
+            
+            self.ref.child("lines").child(self.textField.text).setValue([
+                    "keys": [
+                        "0": "init",
+                    ],
+                    "likes" : 0,
+                    "username" : FIRAuth.auth()!.currentUser!.uid,
+            ] as NSDictionary);
         }
         else {
             let alertController = UIAlertController(title: "Error", message: "Please use the above words to create your pickup line.", preferredStyle: .alert);
@@ -80,6 +90,7 @@ class CreateController: UIViewController {
         super.viewDidLoad()
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
         refreshAll();
+        ref = FIRDatabase.database().reference();
     }
 
     override func didReceiveMemoryWarning() {

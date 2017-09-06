@@ -44,7 +44,9 @@ class CreateController: UIViewController {
             
             self.ref.child("lines").child(self.textField.text).setValue([
                     "keys": [
-                        "0": "init",
+                        "1" : "\(self.word1.currentTitle!)",
+                        "2" : "\(self.word2.currentTitle!)",
+                        "3" : "\(self.word3.currentTitle!)",
                     ],
                     "likes" : 0,
                     "username" : FIRAuth.auth()!.currentUser!.uid,
@@ -70,7 +72,16 @@ class CreateController: UIViewController {
             (createTextField.text.lowercased().range(of: keyword1.text!.lowercased()) != nil) &&
             (createTextField.text.lowercased().range(of: keyword2.text!.lowercased()) != nil) &&
             (createTextField.text.lowercased().range(of: keyword3.text!.lowercased()) != nil) {
-            print("TODO: Submit to Firebase");
+            
+            self.ref.child("lines").child(self.textField.text).setValue([
+                "keys": [
+                    "1" : "\(keyword1.text!)",
+                    "2" : "\(keyword2.text!)",
+                    "3" : "\(keyword3.text!)",
+                ],
+                "likes" : 0,
+                "username" : FIRAuth.auth()!.currentUser!.uid,
+            ] as NSDictionary);
         }
     }
     @IBAction func clearFields(_ sender: Any) {
@@ -88,7 +99,7 @@ class CreateController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height+100)
+        self.hideKeyboardWhenTappedAround();
         refreshAll();
         ref = FIRDatabase.database().reference();
     }

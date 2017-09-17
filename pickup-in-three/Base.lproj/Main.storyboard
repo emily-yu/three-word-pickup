@@ -301,7 +301,7 @@
                                                         <color key="titleColor" red="0.25523927810000002" green="0.3138494194" blue="0.4762791395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="upvote:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="xaT-oq-EGT"/>
+                                                        <action selector="upvote:" destination="nPF-84-Jwi" eventType="touchUpInside" id="eBE-Mh-Ack"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joo-rO-Oag">
@@ -313,7 +313,7 @@
                                                         <color key="titleColor" red="0.25523927810000002" green="0.3138494194" blue="0.4762791395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="downvote:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="iT3-wu-4I2"/>
+                                                        <action selector="downvote:" destination="nPF-84-Jwi" eventType="touchUpInside" id="Q10-yk-LnB"/>
                                                     </connections>
                                                 </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kbY-mx-rWk">

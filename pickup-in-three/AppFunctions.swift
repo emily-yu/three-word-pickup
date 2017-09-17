@@ -15,7 +15,7 @@ class appFunctions {
     
     var ref = FIRDatabase.database().reference();
     
-    /* Add a reveal point to the user's account */
+    /* Add a point to the user's account */
     func incrementPoints() {
         self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("points").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             if let int = snapshot.value{

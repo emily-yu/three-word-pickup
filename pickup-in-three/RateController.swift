@@ -10,25 +10,29 @@ import UIKit
 import Foundation
 import Firebase
 
-// line data
-var lineText = [String]()
-var lineLike = [Int]()
-var lineUser = [String]()
-var lineKey = [String]()
+//// line data
+//var lineText = [String]()
+//var lineLike = [Int]()
+//var lineUser = [String]()
+//var lineKey = [String]()
 
 class RateController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     var ref: FIRDatabaseReference!
-    
+    // line data
+    var lineText = [String]()
+    var lineLike = [Int]()
+    var lineUser = [String]()
+    var lineKey = [String]()
     override func viewDidLoad() {
         // Do any additional setup after loading the view, typically from a nib.
         ref = FIRDatabase.database().reference()
         super.viewDidLoad()
-        self.loadData(tableView: tableView)
+        self.loadData()
         
         // secondary function contacting
-        NotificationCenter.default.addObserver(self, selector: #selector(loadData(tableView: UITableView)), name: NSNotification.Name(rawValue: "loadData"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(loadData(tableView: UITableView)), name: NSNotification.Name(rawValue: "loadData"), object: nil)
         
         // set up the tableView
         let cellReuseIdentifier = "cell";
@@ -97,7 +101,7 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         tableView.deselectRow(at: indexPath, animated: true);
     }
     
-    func loadData(tableView: UITableView) {
+    func loadData() {
         
         print("ASDjfksdajfldsaf")
         
@@ -107,42 +111,81 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         lineKey.removeAll()
         
         let likeRef = ref.child("lines")
-        likeRef.observe(.value, with: { snapshot in
-            
+        likeRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children {
-                lineText.append((line as AnyObject).key);
+                self.lineText.append((line as AnyObject).key);
             }
             let count = Int(snapshot.childrenCount);
             
             // line is the key to navigate through
-            for lines in lineText {
+            for lines in self.lineText {
                 
                 // likes on each line
                 likeRef.child(lines).child("likes").observe(.value, with: {
                     snapshot in
-                    lineLike.append(snapshot.value as! Int);
-                });
-                
-                // user on each line
-                likeRef.child(lines).child("username").observe(.value, with: {
-                    snapshot in
-                    lineUser.append(snapshot.value as! String);
+                    self.lineLike.append(snapshot.value as! Int);
                 });
                 
                 // user on each line
                 likeRef.child(lines).child("keys").observe(.value, with: {
                     snapshot in
                     for line in snapshot.children {
-                        lineKey.append((line as AnyObject).value)
+                        self.lineKey.append((line as AnyObject).value)
                     }
-                    if (lineLike.count == count) {
-                        tableView.reloadData();
+                });
+                
+                // user on each line
+                likeRef.child(lines).child("username").observe(.value, with: {
+                    snapshot in
+                    //                    self.lineUser.append(snapshot.value as! String);
+                    if (snapshot.value as! String != "0") {
+                        self.ref.child("users").child(snapshot.value as! String).child("username").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                            self.lineUser.append(snapshot.value as! String)
+                            if (self.lineLike.count == count) {
+                                self.tableView.reloadData();
+                            }
+                        }
+                    }
+                    else {
+                        self.lineUser.append("same")
+                        if (self.lineLike.count == count) {
+                            self.tableView.reloadData();
+                        }
                     }
                 });
             }
-        });
+        }
     }
 
+    @IBAction func upvote(_ sender: Any) {
+        print("accessed")
+        if let cell = (sender as AnyObject).superview??.superview as? RateCell {
+            print(cell)
+            let indexPath = tableView.indexPath(for: cell)
+            print(indexPath?.row)
+            self.ref.child("lines").child(lineText[(indexPath?.row)!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                if let int = snapshot.value {
+                    let same = (int as! Int) + 1;
+                    print(self.lineText[(indexPath?.row)!])
+                    self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
+                    self.lineLike[(indexPath?.row)!] = same
+                    self.loadData()
+//                    print(lineText)
+//                    lineText = Array(lineText.dropFirst(3))
+//                    lineLike = array.suffix(lineLike.count/2)
+//                    lineUser = array.suffix(lineUser.count/2)
+//                    lineKey = array.suffix(lineKey.count/2)
+//                    self.tableView.reloadData()
+//                    self.lineText = Array(self.lineText.dropFirst(3))
+//                    self.tableView.reloadRows(at: [indexPsath!], with: .top)
+//                    print(lineText)
+                    // refresh data
+                    // alert to tell that they upvoted?
+                }
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -171,30 +214,30 @@ class RateCell: UITableViewCell {
     @IBOutlet var username: UILabel!
     @IBOutlet var line: UITextView!
     @IBAction func upvote(_ sender: Any) {
-        ref.child("lines").child(lineText[id!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            if let int = snapshot.value {
-                let same = (int as! Int) + 1;
-                self.ref.child("lines").child(lineText[self.id!]).child("likes").setValue(same);
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil, userInfo: [self.tableView()!: UITableView.self]);
-                // refresh data
-                // alert to tell that they upvoted?
-            }
-        }
+//        ref.child("lines").child(lineText[id!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+//            if let int = snapshot.value {
+//                let same = (int as! Int) + 1;
+//                self.ref.child("lines").child(lineText[self.id!]).child("likes").setValue(same);
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil, userInfo: [self.tableView()!: UITableView.self]);
+//                // refresh data
+//                // alert to tell that they upvoted?
+//            }
+//        }
     }
     @IBAction func downvote(_ sender: Any) {
-        ref.child("lines").child(lineText[id!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            if let int = snapshot.value {
-                let same = (int as! Int) - 1;
-                if (same != 0) {
-                    self.ref.child("lines").child(lineText[self.id!]).child("likes").setValue(same);
-                    // refresh data
-                    // alert to tell that they upvoted?
-                }
-                else {
-                    // alert to tell them they can't
-                }
-            }
-        }
+//        ref.child("lines").child(lineText[id!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+//            if let int = snapshot.value {
+//                let same = (int as! Int) - 1;
+//                if (same != 0) {
+//                    self.ref.child("lines").child(lineText[self.id!]).child("likes").setValue(same);
+//                    // refresh data
+//                    // alert to tell that they upvoted?
+//                }
+//                else {
+//                    // alert to tell them they can't
+//                }
+//            }
+//        }
     }
 }
 

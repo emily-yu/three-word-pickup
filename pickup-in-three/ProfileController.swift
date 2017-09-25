@@ -8,8 +8,11 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class ProfileController: UIViewController {
+    
+    var ref:FIRDatabaseReference!
     
     // profile info
     @IBOutlet var profileImage: UIImageView!
@@ -23,7 +26,18 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = FIRDatabase.database().reference();
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // set name
+        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.name.text = snapshot.value as! String
+        });
+        
+        // set score
+        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("points").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.score.text = String(tsnapshot.value as! Int)
+        });
     }
     
     override func didReceiveMemoryWarning() {

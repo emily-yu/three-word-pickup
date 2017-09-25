@@ -99,6 +99,7 @@ class RegisterController: UIViewController {
                     // set user details
                     self.ref.child("users").child((user?.uid)!).setValue([
                         "username": self.username.text!,
+                        "aboutMe" : "default",
                         "favorites": [
                             "0": "default",
                         ],

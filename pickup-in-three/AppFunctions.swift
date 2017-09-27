@@ -14,6 +14,8 @@ import SwiftyJSON
 class appFunctions {
     
     var ref = FIRDatabase.database().reference();
+    var favoritedLines: [String] = [];
+    var postedLines: [String] = [];
     
     /* Add a point to the user's account */
     func incrementPoints() {
@@ -38,6 +40,30 @@ class appFunctions {
                 button.setTitle(String(describing: data["word"]), for: .normal);
             }
         }
+    }
+    
+    /**
+     * Retrieve update data for user's favorited lines
+     * @returns [String]
+     */
+//    func refreshFavorites() -> [String] {
+//        postedLines.removeAll();
+//        ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("lines").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+//            for line in snapshot.children {
+//                self.postedLines.append(line as! String);
+//                if (postedLines.count == snapshot.childrenCount - 1) {
+//                    return postedLines;
+//                }
+//            }
+//        }
+//    }
+    
+    /**
+     * Retrieve update data for user's posted lines
+     * @returns [String]
+     */
+    func refreshUserLines() -> [String] {
+        return ["asdf"];
     }
 }
 

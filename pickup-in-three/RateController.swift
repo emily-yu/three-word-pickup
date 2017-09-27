@@ -10,12 +10,6 @@ import UIKit
 import Foundation
 import Firebase
 
-//// line data
-//var lineText = [String]()
-//var lineLike = [Int]()
-//var lineUser = [String]()
-//var lineKey = [String]()
-
 class RateController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
@@ -170,17 +164,6 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
                     self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
                     self.lineLike[(indexPath?.row)!] = same
                     self.loadData()
-//                    print(lineText)
-//                    lineText = Array(lineText.dropFirst(3))
-//                    lineLike = array.suffix(lineLike.count/2)
-//                    lineUser = array.suffix(lineUser.count/2)
-//                    lineKey = array.suffix(lineKey.count/2)
-//                    self.tableView.reloadData()
-//                    self.lineText = Array(self.lineText.dropFirst(3))
-//                    self.tableView.reloadRows(at: [indexPsath!], with: .top)
-//                    print(lineText)
-                    // refresh data
-                    // alert to tell that they upvoted?
                 }
             }
         }

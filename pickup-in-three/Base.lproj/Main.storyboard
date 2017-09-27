@@ -457,52 +457,41 @@
                                 <rect key="frame" x="29" y="79" width="79" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQE-NQ-FuK">
-                                <rect key="frame" x="29" y="199" width="70" height="21"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIr-tr-nG8">
+                                <rect key="frame" x="116" y="120" width="229" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <string key="text">hey its an about me section limit it thhanks asdfa sd f as fd safdasf sa fsd af sdfdas fs daf ads fsa f asdf sd fsda f adsf dsaf das f</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9PS-wb-ydK">
-                                <rect key="frame" x="29" y="222" width="316" height="170"/>
+                                <rect key="frame" x="29" y="244" width="316" height="348"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.60946720840000002" green="0.66126364469999999" blue="0.74906647209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sb7-gb-pJ3" customClass="FavoriteLinesCell" customModule="pickup_in_three" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileViewCell" id="Sb7-gb-pJ3" customClass="ProfileViewCell" customModule="pickup_in_three" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="316" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sb7-gb-pJ3" id="8on-AX-l2U">
                                             <rect key="frame" x="0.0" y="0.0" width="316" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dq-My-SSn">
+                                                    <rect key="frame" x="8" y="8" width="300" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" red="0.69203019139999999" green="0.75123786930000003" blue="0.85101509090000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellText" destination="1dq-My-SSn" id="3pf-c5-5jY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gcl-Ih-cV9">
-                                <rect key="frame" x="29" y="429" width="316" height="164"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.60946720840000002" green="0.66126364469999999" blue="0.74906647209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lgU-4m-JWM" customClass="UsersLinesCell" customModule="pickup_in_three" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="316" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lgU-4m-JWM" id="e0S-mo-vZj">
-                                            <rect key="frame" x="0.0" y="0.0" width="316" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.69203019139999999" green="0.75123786930000003" blue="0.85101509090000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pickup Lines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJr-WY-74j">
-                                <rect key="frame" x="29" y="400" width="97" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pickup Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiX-aH-ASZ">
                                 <rect key="frame" x="121" y="100" width="224" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -528,13 +517,24 @@
                                     <action selector="editImage:" destination="8GL-Sz-U0g" eventType="touchUpInside" id="q8b-CF-O3w"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIr-tr-nG8">
-                                <rect key="frame" x="116" y="120" width="229" height="74"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="go6-B2-gpD">
+                                <rect key="frame" x="29" y="208" width="316" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">hey its an about me section limit it thhanks asdfa sd f as fd safdasf sa fsd af sdfdas fs daf ads fsa f asdf sd fsda f adsf dsaf das f</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <color key="backgroundColor" red="0.69203019139999999" green="0.75123786930000003" blue="0.85101509090000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <segments>
+                                    <segment title="Favorites"/>
+                                    <segment title="Pickup Lines"/>
+                                </segments>
+                                <color key="tintColor" red="0.34218278530000001" green="0.42267239089999997" blue="0.6510540843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="tableChanged:" destination="8GL-Sz-U0g" eventType="valueChanged" id="G3B-Vq-xd6"/>
+                                </connections>
+                            </segmentedControl>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1SP-wE-wKq">
+                                <rect key="frame" x="29" y="208" width="316" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.34218278530000001" green="0.42267239089999997" blue="0.6510540843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="0.60946720838546753" green="0.66126364469528198" blue="0.74906647205352783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
@@ -544,8 +544,10 @@
                         <outlet property="favoriteTable" destination="9PS-wb-ydK" id="I9o-Hk-mpg"/>
                         <outlet property="imageView" destination="EKJ-rN-gRV" id="y5R-o8-YHR"/>
                         <outlet property="name" destination="BEI-Or-OWM" id="iQz-cM-4fd"/>
-                        <outlet property="pickUpTable" destination="Gcl-Ih-cV9" id="V0i-Bz-XxS"/>
+                        <outlet property="progressBar" destination="1SP-wE-wKq" id="BGI-gD-Ob9"/>
                         <outlet property="score" destination="PiX-aH-ASZ" id="963-tS-RGU"/>
+                        <outlet property="static_selector" destination="go6-B2-gpD" id="qpB-8E-RLy"/>
+                        <outlet property="tableView" destination="9PS-wb-ydK" id="H0O-9g-PNo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bc4-3d-0Nz" userLabel="First Responder" sceneMemberID="firstResponder"/>

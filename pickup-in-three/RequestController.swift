@@ -8,14 +8,28 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class RequestController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var ref: FIRDatabaseReference!
+    var requests: [[String]] = []
     @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        ref = FIRDatabase.database().reference();
+        ref.child("request").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            for line in snapshot.children {
+                if ((line as AnyObject).key != "0") {
+                    let fields = ((line as AnyObject).value).components(separatedBy: .whitespaces).filter {!$0.isEmpty}
+                    self.requests.append(fields);
+                    self.tableView.reloadData();
+                }
+            }
+        }
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
@@ -25,17 +39,16 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
     // tableView -- START MARKER
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return contactNames.count
-        return 2;
+        return requests.count;
     }
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:RequestCell = self.tableView.dequeueReusableCell(withIdentifier: "RequestCell") as! RequestCell
+        let cell: RequestCell = self.tableView.dequeueReusableCell(withIdentifier: "RequestCell") as! RequestCell
         
-        cell.first.text = "first"
-        cell.second.text = "second"
-        cell.third.text = "third"
+        cell.first.text = requests[indexPath.row][0];
+        cell.second.text = requests[indexPath.row][1];
+        cell.third.text = requests[indexPath.row][2];
         
         return cell
     }

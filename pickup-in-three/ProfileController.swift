@@ -19,6 +19,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     var imagePicker: UIImagePickerController!
     var postedLines: [String] = [];
     var favoritesLines: [String] = [];
+    var requests: [String] = [];
     var tableData: [String] = [];
     
     @IBOutlet var static_selector: UISegmentedControl!
@@ -26,14 +27,22 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBAction func tableChanged(_ sender: Any) {
         if (static_selector.selectedSegmentIndex == 0) {
             // favorites
-            progressBar.setProgress(0.5, animated: false);
+            progressBar.setProgress(0.333333333, animated: false);
             tableData = favoritesLines;
             self.tableView.reloadData();
         }
-        else {
+        else if (static_selector.selectedSegmentIndex == 1) {
             // pickup lines
-            self.progressBar.setProgress(1, animated: false);
+            self.progressBar.setProgress(0.66666666, animated: false);
             tableData = postedLines;
+            profileTable_isFirstLoad = false;
+            self.tableView.reloadData();
+        }
+        else {
+            // requests
+            // TODO: change this to request data
+            self.progressBar.setProgress(1, animated: false);
+            tableData = requests;
             profileTable_isFirstLoad = false;
             self.tableView.reloadData();
         }
@@ -102,7 +111,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("lines").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children {
                 if ((line as AnyObject).key != "0") {
-                self.postedLines.append((line as AnyObject).value);
+                    self.postedLines.append((line as AnyObject).value);
                 }
             }
         }
@@ -110,14 +119,21 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children {
                 if ((line as AnyObject).key != "0") {
-                self.favoritesLines.append((line as AnyObject).value);
+                    self.favoritesLines.append((line as AnyObject).value);
+                }
+            }
+        }
+        requests.removeAll();
+        ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("requests").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            for line in snapshot.children {
+                if ((line as AnyObject).key != "0") {
+                    self.requests.append((line as AnyObject).value);
                     self.tableData = self.favoritesLines
                     self.tableView.reloadData();
                 }
             }
         }
         
-//        tableData = favoritesLines;
     }
     
     private func base64PaddingWithEqual(encoded64: String) -> String {
@@ -179,6 +195,8 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(favoritesLines)
         print(postedLines)
+        print(requests)
+        tableView.deselectRow(at: indexPath, animated: true);
 //        if (static_selector.selectedSegmentIndex == 0) { // communities
 //            let textToFind = String(userGroups[indexPath.row]);
 //            groupDetailsTitle = textToFind!

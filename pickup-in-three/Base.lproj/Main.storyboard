@@ -526,13 +526,14 @@
                                 <segments>
                                     <segment title="Favorites"/>
                                     <segment title="Pickup Lines"/>
+                                    <segment title="Requests"/>
                                 </segments>
                                 <color key="tintColor" red="0.34218278530000001" green="0.42267239089999997" blue="0.6510540843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="tableChanged:" destination="8GL-Sz-U0g" eventType="valueChanged" id="G3B-Vq-xd6"/>
                                 </connections>
                             </segmentedControl>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1SP-wE-wKq">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.33333332999999998" translatesAutoresizingMaskIntoConstraints="NO" id="1SP-wE-wKq">
                                 <rect key="frame" x="29" y="208" width="316" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.34218278530000001" green="0.42267239089999997" blue="0.6510540843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

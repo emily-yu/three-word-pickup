@@ -61,9 +61,8 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
 
         let defaultAction = UIAlertAction(title: "Submit", style: .cancel, handler: { (_) in
-            let textField = alertController.textFields![0] // Force unwrapping because we know it exists.
-            print("Text field: \(textField.text)")
-
+            
+            // checking if all keywords were present
             if  (alertController.textFields![0].text?.range(of: self.requests[indexPath.row][0].lowercased()) != nil) &&
                 (alertController.textFields![0].text?.range(of: self.requests[indexPath.row][1].lowercased()) != nil) &&
                 (alertController.textFields![0].text?.range(of: self.requests[indexPath.row][2].lowercased()) != nil) {
@@ -77,8 +76,6 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
                     "likes" : 0,
                     "username" : FIRAuth.auth()!.currentUser!.uid,
                 ] as NSDictionary);
-                
-                // TODO: Remove request after x pickup lines submitted
             }
             else {
                 let alertController = UIAlertController(title: "Error", message: "Required words were not present.", preferredStyle: .alert);

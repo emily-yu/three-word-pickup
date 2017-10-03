@@ -19,6 +19,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     var imagePicker: UIImagePickerController!
     var postedLines: [String] = [];
     var favoritesLines: [String] = [];
+    var favoritesLinesKey: [String] = [];
     var requests: [String] = [];
     var tableData: [String] = [];
     
@@ -40,7 +41,6 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         else {
             // requests
-            // TODO: change this to request data
             self.progressBar.setProgress(1, animated: false);
             tableData = requests;
             profileTable_isFirstLoad = false;
@@ -93,7 +93,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         });
         
         // check if profile picture exists, if not set to the thing
-    self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("base64string").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("base64string").observeSingleEvent(of: .value, with: { (snapshot) in
             if let same:String = (snapshot.value! as? String) {
                 if (same == "default") {
                     self.imageView.image = #imageLiteral(resourceName: "guy");
@@ -116,10 +116,12 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         favoritesLines.removeAll();
+        favoritesLinesKey.removeAll();
         ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            for line in snapshot.children {
-                if ((line as AnyObject).key != "0") {
-                    self.favoritesLines.append((line as AnyObject).value);
+            for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                if (line.key != "0") {
+                    self.favoritesLines.append(line.value as! String);
+                    self.favoritesLinesKey.append(line.key);
                 }
             }
         }
@@ -140,8 +142,8 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         let remainder = encoded64.characters.count % 4
         if remainder == 0 {
             return encoded64;
-        } else {
-            // padding with equal
+        }
+        else {
             let newLength = encoded64.characters.count + (4 - remainder);
             return encoded64.padding(toLength: newLength, withPad: "=", startingAt: 0);
         }
@@ -159,7 +161,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismiss(animated: true, completion:nil);
+        dismiss(animated: true, completion: nil);
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
@@ -169,24 +171,13 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     // tableView
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if (profileTable_isFirstLoad) {
-//            return userGroups.count;
-//        }
-//        else {
-//            return tableData.count;
-//        }
         return tableData.count;
     }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ProfileViewCell = self.tableView.dequeueReusableCell(withIdentifier: "ProfileViewCell") as! ProfileViewCell;
-//        if (profileTable_isFirstLoad) {
-//            cell.cellText.text = String(tableData[indexPath.row]);
-//        }
-//        else {
-            cell.cellText.text = String(tableData[indexPath.row]);
-//        }
+        cell.cellText.text = String(tableData[indexPath.row]);
         
         return cell;
     }
@@ -197,61 +188,63 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         print(postedLines)
         print(requests)
         tableView.deselectRow(at: indexPath, animated: true);
-//        if (static_selector.selectedSegmentIndex == 0) { // communities
-//            let textToFind = String(userGroups[indexPath.row]);
-//            groupDetailsTitle = textToFind!
-//
-//            let ivc = self.storyboard?.instantiateViewController(withIdentifier: "GroupDetailsController");
-//            ivc?.modalPresentationStyle = .custom;
-//            ivc?.modalTransitionStyle = .crossDissolve;
-//            self.present(ivc!, animated: true, completion: { _ in });
-//        }
-//        else if (static_selector.selectedSegmentIndex == 1) { // favorites - incomplete; hide me too and stuff based on uid
-//            let textToFind = String(myPostsText[indexPath.row]);
-//            let refPath = self.ref.child("post");
-//
-//            refPath.queryOrdered(byChild: "text").queryEqual(toValue:textToFind).observe(.value, with: { snapshot in
-//                if (snapshot.value is NSNull) {
-//                    print("Item was not found");
-//                }
-//                else {
-//                    for child in snapshot.children {
-//                        let key = (child as AnyObject).key as String;
-//                        clickedIndex = Int(key);
-//
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil);
-//                        let ivc = storyboard.instantiateViewController(withIdentifier: "postInfo");
-//                        ivc.modalPresentationStyle = .custom;
-//                        ivc.modalTransitionStyle = .crossDissolve;
-//                        self.present(ivc, animated: true, completion: { _ in });
-//                    }
-//                }
-//            });
-//            tableView.deselectRow(at: indexPath, animated: true);
-//        }
-//        else { // posts
-//            let textToFind = String(myPostsText[indexPath.row]);
-//            let refPath = self.ref.child("post");
-//
-//            refPath.queryOrdered(byChild: "text").queryEqual(toValue:textToFind).observe(.value, with: { snapshot in
-//                if (snapshot.value is NSNull) {
-//                    print("Item was not found");
-//                }
-//                else {
-//                    for child in snapshot.children {
-//                        let key = (child as AnyObject).key as String;
-//                        clickedIndex = Int(key);
-//
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil);
-//                        let ivc = storyboard.instantiateViewController(withIdentifier: "postInfo");
-//                        ivc.modalPresentationStyle = .custom;
-//                        ivc.modalTransitionStyle = .crossDissolve;
-//                        self.present(ivc, animated: true, completion: { _ in });
-//                    }
-//                }
-//            });
-//            tableView.deselectRow(at: indexPath, animated: true);
-//        }
+        
+        // favorites
+        if (static_selector.selectedSegmentIndex == 0) {
+            let alertController = UIAlertController(title: "Confirm", message: "You are about to remove this line from your favorites.", preferredStyle: .alert);
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction);
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").child(self.favoritesLinesKey[indexPath.row]).removeValue { (error, ref) in
+                    if error != nil {
+                        print("error \(error)")
+                    }
+                }
+                self.favoritesLines.remove(at: indexPath.row);
+                self.favoritesLinesKey.remove(at: indexPath.row);
+                self.tableData = self.favoritesLines;
+                self.tableView.reloadData();
+            });
+            alertController.addAction(defaultAction);
+            
+            self.present(alertController, animated: true, completion: nil);
+        }
+            
+        // pickup lines
+        else if (static_selector.selectedSegmentIndex == 1) {
+            let alertController = UIAlertController(title: "Confirm", message: "You are about to delete this line from the global community.", preferredStyle: .alert);
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction);
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                print("TODO: Add deleletion of user created line.")
+                // delete from data array
+                // reload tableview
+                // go through each user's details and delete it if they favorited it
+                // remove from user's saved lines
+            });
+            alertController.addAction(defaultAction);
+            
+            self.present(alertController, animated: true, completion: nil);
+        }
+            
+        // requests
+        else {
+            let alertController = UIAlertController(title: "Confirm", message: "You are about to remove this request from the global community.", preferredStyle: .alert);
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction);
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                print("TODO: Add deleletion of request.")
+            });
+            alertController.addAction(defaultAction);
+            
+            self.present(alertController, animated: true, completion: nil);
+        }
     }
     
     override func didReceiveMemoryWarning() {

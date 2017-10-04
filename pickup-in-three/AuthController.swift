@@ -23,14 +23,12 @@ class LoginController: UIViewController {
             
             //Alert to tell the user that there was an error because they didn't fill anything in the textfields because they didn't fill anything in
             
-            let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert);
             
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil);
+            alertController.addAction(defaultAction);
             
-            self.present(alertController, animated: true, completion: nil)
-            
-            
+            self.present(alertController, animated: true, completion: nil);
             
         } else {
             
@@ -39,36 +37,36 @@ class LoginController: UIViewController {
                 if error == nil {
                     
                     // set groups array
-                    self.ref = FIRDatabase.database().reference()
+                    self.ref = FIRDatabase.database().reference();
                     
-                    var storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    var ivc = storyboard.instantiateViewController(withIdentifier: "Home")
-                    ivc.modalPresentationStyle = .custom
-                    ivc.modalTransitionStyle = .crossDissolve
+                    var storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    var ivc = storyboard.instantiateViewController(withIdentifier: "Home");
+                    ivc.modalPresentationStyle = .custom;
+                    ivc.modalTransitionStyle = .crossDissolve;
                     self.present(ivc, animated: true, completion: { _ in })
                     
                 } else {
                     
                     //Tells the user that there is an error and then gets firebase to tell them the error
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert);
                     
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil);
+                    alertController.addAction(defaultAction);
                     
-                    self.present(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: nil);
                 }
             }
         }
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        super.viewDidLoad();
+        self.hideKeyboardWhenTappedAround();
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning();
         // Dispose of any resources that can be recreated.
     }
     
@@ -85,12 +83,12 @@ class RegisterController: UIViewController {
     @IBAction func register(_ sender: Any) {
         self.ref = FIRDatabase.database().reference()
         if email.text! == "" || password.text! == "" {
-            let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert);
             
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil);
+            alertController.addAction(defaultAction);
             
-            present(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil);
             
         } else {
             FIRAuth.auth()?.createUser(withEmail: email.text!, password: password.text!) { (user, error) in
@@ -107,35 +105,35 @@ class RegisterController: UIViewController {
                             "0": "default",
                         ],
                         "base64string": "default",
-                    ])
+                    ]);
                     
-                    var storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    var ivc = storyboard.instantiateViewController(withIdentifier: "Home")
+                    var storyboard = UIStoryboard(name: "Main", bundle: nil);
+                    var ivc = storyboard.instantiateViewController(withIdentifier: "Home");
                     ivc.modalPresentationStyle = .custom
                     ivc.modalTransitionStyle = .crossDissolve
                     self.present(ivc, animated: true, completion: { _ in })
                     
                 }
                 else {
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert);
                     
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil);
+                    alertController.addAction(defaultAction);
                     
-                    self.present(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: nil);
                 }
             }
         }
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        super.viewDidLoad();
+        self.hideKeyboardWhenTappedAround();
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning();
         // Dispose of any resources that can be recreated.
     }
     

@@ -13,7 +13,7 @@ import Firebase
 class RequestController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var ref: FIRDatabaseReference!
-    var requests: [[String]] = []
+    var requests: [[String]] = [];
     @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -31,9 +31,9 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell");
+        tableView.delegate = self;
+        tableView.dataSource = self;
     }
     
     // tableView -- START MARKER
@@ -44,7 +44,7 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: RequestCell = self.tableView.dequeueReusableCell(withIdentifier: "RequestCell") as! RequestCell
+        let cell: RequestCell = self.tableView.dequeueReusableCell(withIdentifier: "RequestCell") as! RequestCell;
         
         cell.first.text = requests[indexPath.row][0];
         cell.second.text = requests[indexPath.row][1];
@@ -55,9 +55,10 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Create", message: "The required words are: \(requests[indexPath.row][0]), \(requests[indexPath.row][1]), and \(requests[indexPath.row][2]).", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Create", message: "The required words are: \(requests[indexPath.row][0]), \(requests[indexPath.row][1]), and \(requests[indexPath.row][2]).", preferredStyle: .alert);
         
-        alertController.addTextField { (textField) in
+        alertController.addTextField {
+            (textField) in
         }
 
         let defaultAction = UIAlertAction(title: "Submit", style: .cancel, handler: { (_) in
@@ -85,26 +86,26 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         });
         
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
+        alertController.addAction(defaultAction);
+        self.present(alertController, animated: true, completion: nil);
+        tableView.deselectRow(at: indexPath, animated: true);
     }
     // tableView -- END MARKER
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
+            textView.text = nil;
+            textView.textColor = UIColor.black;
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
-            textView.textColor = UIColor.lightGray
+            textView.text = "Placeholder";
+            textView.textColor = UIColor.lightGray;
         }
     }
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        super.didReceiveMemoryWarning();
         // Dispose of any resources that can be recreated.
     }
     

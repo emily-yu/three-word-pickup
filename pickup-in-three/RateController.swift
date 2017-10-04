@@ -14,16 +14,18 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     
     @IBOutlet var tableView: UITableView!
     var ref: FIRDatabaseReference!
+    
     // line data
-    var lineText = [String]()
-    var lineLike = [Int]()
-    var lineUser = [String]()
-    var lineKey = [String]()
+    var lineText = [String]();
+    var lineLike = [Int]();
+    var lineUser = [String]();
+    var lineKey = [String]();
+    
     override func viewDidLoad() {
         // Do any additional setup after loading the view, typically from a nib.
-        ref = FIRDatabase.database().reference()
-        super.viewDidLoad()
-        self.loadData()
+        ref = FIRDatabase.database().reference();
+        super.viewDidLoad();
+        self.loadData();
         
         // secondary function contacting
 //        NotificationCenter.default.addObserver(self, selector: #selector(loadData(tableView: UITableView)), name: NSNotification.Name(rawValue: "loadData"), object: nil)
@@ -48,15 +50,15 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
             cell?.selectionStyle = UITableViewCellSelectionStyle.none;
         }
         
-        cell?.id = indexPath.row
+        cell?.id = indexPath.row;
         
         cell?.likes?.sizeToFit();
         cell?.likes?.text = String(lineLike[indexPath.row]);
-        cell?.likes?.numberOfLines = 0
+        cell?.likes?.numberOfLines = 0;
         
         cell?.username?.sizeToFit();
         cell?.username?.text = lineUser[indexPath.row];
-        cell?.username?.numberOfLines = 0
+        cell?.username?.numberOfLines = 0;
         
         cell?.line?.sizeToFit();
         cell?.line?.text = lineText[indexPath.row];
@@ -99,12 +101,12 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         
         print("ASDjfksdajfldsaf")
         
-        lineText.removeAll()
-        lineLike.removeAll()
-        lineUser.removeAll()
-        lineKey.removeAll()
+        lineText.removeAll();
+        lineLike.removeAll();
+        lineUser.removeAll();
+        lineKey.removeAll();
         
-        let likeRef = ref.child("lines")
+        let likeRef = ref.child("lines");
         likeRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children {
                 self.lineText.append((line as AnyObject).key);
@@ -124,7 +126,7 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
                 likeRef.child(lines).child("keys").observe(.value, with: {
                     snapshot in
                     for line in snapshot.children {
-                        self.lineKey.append((line as AnyObject).value)
+                        self.lineKey.append((line as AnyObject).value);
                     }
                 });
                 
@@ -163,7 +165,7 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
                     print(self.lineText[(indexPath?.row)!])
                     self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
                     self.lineLike[(indexPath?.row)!] = same
-                    self.loadData()
+                    self.loadData();
                 }
             }
         }

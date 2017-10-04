@@ -98,7 +98,7 @@ class CreateController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
         self.hideKeyboardWhenTappedAround();
         refreshAll();
         ref = FIRDatabase.database().reference();

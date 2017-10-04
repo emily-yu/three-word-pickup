@@ -80,22 +80,23 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Do any additional setup after loading the view, typically from a nib.
         
         // set name
-        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
-            self.name.text = snapshot.value as! String
+        let currentUserRef = self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid);
+        currentUserRef.child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.name.text = snapshot.value as! String;
         });
         
         // set score
-        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("points").observeSingleEvent(of: .value, with: { (snapshot) in
-            self.score.text = String(snapshot.value as! Int)
+        currentUserRef.child("points").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.score.text = String(snapshot.value as! Int);
         });
         
         // set user description
-        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("aboutMe").observeSingleEvent(of: .value, with: { (snapshot) in
+        currentUserRef.child("aboutMe").observeSingleEvent(of: .value, with: { (snapshot) in
             self.aboutMe.text = snapshot.value! as? String;
         });
         
         // check if profile picture exists, if not set to the thing
-        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("base64string").observeSingleEvent(of: .value, with: { (snapshot) in
+        currentUserRef.child("base64string").observeSingleEvent(of: .value, with: { (snapshot) in
             if let same:String = (snapshot.value! as? String) {
                 if (same == "default") {
                     self.imageView.image = #imageLiteral(resourceName: "guy");
@@ -111,7 +112,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         // retrieve data
         postedLines.removeAll();
         postedLinesKey.removeAll();
-        ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("lines").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+        currentUserRef.child("lines").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 if (line.key != "0") {
                     self.postedLines.append(line.value as! String);
@@ -121,7 +122,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         favoritesLines.removeAll();
         favoritesLinesKey.removeAll();
-        ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+        currentUserRef.child("favorites").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 if (line.key != "0") {
                     self.favoritesLines.append(line.value as! String);
@@ -131,7 +132,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         requests.removeAll();
         requestsKey.removeAll();
-        ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("requests").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+        currentUserRef.child("requests").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 if (line.key != "0") {
                     self.requests.append(line.value as! String);
@@ -143,7 +144,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     private func base64PaddingWithEqual(encoded64: String) -> String {
-        let remainder = encoded64.characters.count % 4
+        let remainder = encoded64.characters.count % 4;
         if remainder == 0 {
             return encoded64;
         }
@@ -197,7 +198,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         if (static_selector.selectedSegmentIndex == 0) {
             let alertController = UIAlertController(title: "Confirm", message: "You are about to remove this line from your favorites.", preferredStyle: .alert);
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil);
             alertController.addAction(cancelAction);
             
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
@@ -220,7 +221,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         else if (static_selector.selectedSegmentIndex == 1) {
             let alertController = UIAlertController(title: "Confirm", message: "You are about to delete this line from the global community.", preferredStyle: .alert);
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil);
             alertController.addAction(cancelAction);
             
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
@@ -232,8 +233,8 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                     print(snapshot.value)
                     print(self.favoritesLines[indexPath.row])
                     for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                        let restDict = line.value as? [String: Any]
-                        let KeyDict = line.key as? [String: Any]
+                        let restDict = line.value as? [String: Any];
+                        let KeyDict = line.key as? [String: Any];
 //                        let userRef = self.ref.child["text"] as? String;
                         if (line.key != "0") {
 //                            self.postedLines.append(line.value as! String);
@@ -280,11 +281,11 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         else {
             let alertController = UIAlertController(title: "Confirm", message: "You are about to remove this request from the global community.", preferredStyle: .alert);
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil);
             alertController.addAction(cancelAction);
             
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                print("TODO: Add deleletion of request.")
+                print("TODO: Add deleletion of request.");
             });
             alertController.addAction(defaultAction);
             

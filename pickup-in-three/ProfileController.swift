@@ -18,9 +18,11 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     var profileTable_isFirstLoad = true;
     var imagePicker: UIImagePickerController!
     var postedLines: [String] = [];
+    var postedLinesKey: [String] = [];
     var favoritesLines: [String] = [];
     var favoritesLinesKey: [String] = [];
     var requests: [String] = [];
+    var requestsKey: [String] = [];
     var tableData: [String] = [];
     
     @IBOutlet var static_selector: UISegmentedControl!
@@ -108,10 +110,12 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         // retrieve data
         postedLines.removeAll();
+        postedLinesKey.removeAll();
         ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("lines").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            for line in snapshot.children {
-                if ((line as AnyObject).key != "0") {
-                    self.postedLines.append((line as AnyObject).value);
+            for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                if (line.key != "0") {
+                    self.postedLines.append(line.value as! String);
+                    self.postedLinesKey.append(line.key);
                 }
             }
         }
@@ -126,12 +130,12 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         requests.removeAll();
+        requestsKey.removeAll();
         ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("requests").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            for line in snapshot.children {
-                if ((line as AnyObject).key != "0") {
-                    self.requests.append((line as AnyObject).value);
-                    self.tableData = self.favoritesLines
-                    self.tableView.reloadData();
+            for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                if (line.key != "0") {
+                    self.requests.append(line.value as! String);
+                    self.requestsKey.append(line.key);
                 }
             }
         }
@@ -220,11 +224,52 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             alertController.addAction(cancelAction);
             
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                print("TODO: Add deleletion of user created line.")
-                // delete from data array
-                // reload tableview
-                // go through each user's details and delete it if they favorited it
-                // remove from user's saved lines
+            
+                // TODO: go through each user's details and delete it if they favorited it
+                // delete every instance of that line
+                self.ref.child("users").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                    print("YA")
+                    print(snapshot.value)
+                    print(self.favoritesLines[indexPath.row])
+                    for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                        let restDict = line.value as? [String: Any]
+                        let KeyDict = line.key as? [String: Any]
+//                        let userRef = self.ref.child["text"] as? String;
+                        if (line.key != "0") {
+//                            self.postedLines.append(line.value as! String);
+//                            self.postedLinesKey.append(line.key);
+                            print("USER")
+                            print(line)
+                            print(restDict!["favorites"])
+                            print("FAVORITES:")
+                            let favoriteDict = restDict!["favorites"] as? [String]
+                            print("KEYS:")
+                            let keyDict = KeyDict!["favorites"] as? [String]
+                            print(keyDict)
+                            print(line.key)
+//                            print("SAME")
+////                            for favorite in favoriteDict! {
+////                                print(favorite)
+////                                if (favorite == self.favoritesLines[indexPath.row]) {
+////                                    print("----------------------------")
+////                                    print("same lines")
+////                                    print("user: \(line.key)")
+////                                    print(favorite)
+////
+////                                    print("KEY: \(favorite.key)")
+////                                    print(self.favoritesLines[indexPath.row])
+////                                    print("----------------------------")
+////                                }
+////                            }
+                        }
+                    }
+                }
+                
+//                self.postedLines.remove(at: indexPath.row);
+//                self.postedLinesKey.remove(at: indexPath.row);
+//                self.tableData = self.postedLines;
+//                self.tableView.reloadData();
+        
             });
             alertController.addAction(defaultAction);
             
@@ -246,6 +291,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             self.present(alertController, animated: true, completion: nil);
         }
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

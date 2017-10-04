@@ -434,7 +434,7 @@
             </objects>
             <point key="canvasLocation" x="1383" y="779"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="vRb-jH-ts5">
             <objects>
                 <viewController id="8GL-Sz-U0g" customClass="ProfileController" customModule="pickup_in_three" customModuleProvider="target" sceneMemberID="viewController">
@@ -541,7 +541,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.60946720838546753" green="0.66126364469528198" blue="0.74906647205352783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Tg7-bb-9gx"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="Tg7-bb-9gx"/>
                     <connections>
                         <outlet property="aboutMe" destination="PIr-tr-nG8" id="h5V-Bd-bhh"/>
                         <outlet property="favoriteTable" destination="9PS-wb-ydK" id="I9o-Hk-mpg"/>
@@ -771,8 +771,8 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="xdt-4i-FfU" kind="relationship" relationship="viewControllers" id="QYX-VD-6jf"/>
-                        <segue destination="8GL-Sz-U0g" kind="relationship" relationship="viewControllers" id="FxV-Pi-aeh"/>
                         <segue destination="fdX-3U-uIQ" kind="relationship" relationship="viewControllers" id="zqT-Jv-cIk"/>
+                        <segue destination="8GL-Sz-U0g" kind="relationship" relationship="viewControllers" id="FxV-Pi-aeh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

@@ -16,6 +16,11 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
     var requests: [[String]] = [];
     @IBOutlet var tableView: UITableView!
     
+    @IBAction func addRequest(_ sender: Any) {
+        // when adding, make the user's request key number the same as the number of requests so deletion can function
+        // ex. 42 requests.. add one so there'll be 43 requests, add request w/ 43: asdfasdfasdf to user
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

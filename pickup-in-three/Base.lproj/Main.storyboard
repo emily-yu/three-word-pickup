@@ -796,7 +796,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Requests" id="CSl-ph-ofU">
-                                        <barButtonItem key="rightBarButtonItem" title="Add" id="BK5-0K-rOv"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" id="BK5-0K-rOv">
+                                            <connections>
+                                                <action selector="addRequest:" destination="fdX-3U-uIQ" id="1nr-Cc-mf0"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

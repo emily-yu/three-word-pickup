@@ -285,7 +285,17 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             alertController.addAction(cancelAction);
             
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                print("TODO: Add deleletion of request.");
+
+                self.ref.child("request").child(self.requestsKey[indexPath.row]).removeValue { (error, ref) in
+                    if error != nil {
+                        print("error \(error)")
+                    }
+                }
+                
+                self.requests.remove(at: indexPath.row);
+                self.requestsKey.remove(at: indexPath.row);
+                self.tableData = self.requests;
+                self.tableView.reloadData();
             });
             alertController.addAction(defaultAction);
             

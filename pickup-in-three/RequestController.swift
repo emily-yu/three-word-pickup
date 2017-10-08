@@ -34,7 +34,7 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
             (textField3) in
         }
         
-        let defaultAction = UIAlertAction(title: "Submit", style: .cancel, handler: { (_) in
+        let defaultAction = UIAlertAction(title: "Submit", style: .default, handler: { (_) in
             if  (alertController.textFields![0].text != "") &&
                 (alertController.textFields![1].text != "") &&
                 (alertController.textFields![2].text != "") {
@@ -56,7 +56,8 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
         });
         alertController.addAction(defaultAction);
         
-        // todo: add cancel function
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil);
+        alertController.addAction(cancel);
         
         self.present(alertController, animated: true, completion: nil);
     }

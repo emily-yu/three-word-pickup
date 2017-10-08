@@ -409,7 +409,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.60946720840000002" green="0.66126364469999999" blue="0.74906647209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VTX-Y1-vT2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="VTX-Y1-vT2">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VTX-Y1-vT2" id="ZI6-a8-cMr">
@@ -429,6 +429,10 @@
                         <color key="backgroundColor" red="0.60946720838546753" green="0.66126364469528198" blue="0.74906647205352783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="first" id="Thp-10-gCc"/>
+                    <connections>
+                        <outlet property="searchBar" destination="4nx-DI-dHw" id="a22-o1-d22"/>
+                        <outlet property="tableView" destination="uig-U2-hjM" id="HIh-fe-2pd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Zx-hh-YtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

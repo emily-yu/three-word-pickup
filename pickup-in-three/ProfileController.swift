@@ -137,6 +137,8 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                 if (line.key != "0") {
                     self.requests.append(line.value as! String);
                     self.requestsKey.append(line.key);
+                    self.tableData = self.favoritesLines;
+                    self.tableView.reloadData();
                 }
             }
         }

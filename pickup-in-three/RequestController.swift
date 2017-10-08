@@ -19,6 +19,46 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBAction func addRequest(_ sender: Any) {
         // when adding, make the user's request key number the same as the number of requests so deletion can function
         // ex. 42 requests.. add one so there'll be 43 requests, add request w/ 43: asdfasdfasdf to user
+        
+        let alertController = UIAlertController(title: "Create", message: "Select three keywords that you would like your pickup line to contain.", preferredStyle: .alert);
+        
+        alertController.addTextField {
+            (textField) in
+        }
+        
+        alertController.addTextField {
+            (textField2) in
+        }
+        
+        alertController.addTextField {
+            (textField3) in
+        }
+        
+        let defaultAction = UIAlertAction(title: "Submit", style: .cancel, handler: { (_) in
+            if  (alertController.textFields![0].text != "") &&
+                (alertController.textFields![1].text != "") &&
+                (alertController.textFields![2].text != "") {
+                
+                let word1 = alertController.textFields![0].text!
+                let word2 = alertController.textFields![1].text!
+                let word3 = alertController.textFields![2].text!
+                
+                let requestString = "\(word1) \(word2) \(word3)"
+                
+                self.ref.child("request").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                    let count = Int(snapshot.childrenCount + 1);
+                    self.ref.child("request").child(String(count)).setValue(requestString);
+                    self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("requests").child(String(count)).setValue(requestString);
+                    self.requests.append([word1, word2, word3]);
+                    self.tableView.reloadData();
+                }
+            }
+        });
+        alertController.addAction(defaultAction);
+        
+        // todo: add cancel function
+        
+        self.present(alertController, animated: true, completion: nil);
     }
     
     override func viewDidLoad() {

@@ -11,6 +11,11 @@ import Firebase
 import Alamofire
 import SwiftyJSON
 
+struct userDetails {
+    static let username = ""
+    static let password = ""
+}
+
 class appFunctions {
     
     var ref = FIRDatabase.database().reference();

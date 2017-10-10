@@ -486,13 +486,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jW0-do-Xuh">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="GAq-f7-NhC"/>
-                                </constraints>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jW0-do-Xuh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Profile" id="78g-k6-a6o"/>
+                                    <navigationItem title="Profile" id="78g-k6-a6o">
+                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="5IT-q2-bpc">
+                                            <connections>
+                                                <action selector="logout:" destination="8GL-Sz-U0g" id="aOU-2f-rhm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKJ-rN-gRV">
@@ -600,7 +604,7 @@
         <!--Login Controller-->
         <scene sceneID="N2s-Lj-dL0">
             <objects>
-                <viewController id="CM7-yF-gjz" customClass="LoginController" customModule="pickup_in_three" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="CM7-yF-gjz" customClass="LoginController" customModule="pickup_in_three" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pSq-Yu-Ig0"/>
                         <viewControllerLayoutGuide type="bottom" id="2Dn-Rm-wFh"/>
@@ -665,7 +669,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVE-6E-6vN">
                                 <rect key="frame" x="134" y="548" width="107" height="30"/>

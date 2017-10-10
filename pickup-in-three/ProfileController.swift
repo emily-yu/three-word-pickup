@@ -27,6 +27,15 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet var static_selector: UISegmentedControl!
     
+    @IBAction func logout(_ sender: Any) {
+        try! FIRAuth.auth()!.signOut()
+        if let storyboard = self.storyboard {
+            UserDefaults.standard.set("", forKey: userDetails.username);
+            UserDefaults.standard.set("", forKey: userDetails.password);
+            let vc = storyboard.instantiateViewController(withIdentifier: "Login")
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
     @IBAction func tableChanged(_ sender: Any) {
         if (static_selector.selectedSegmentIndex == 0) {
             // favorites

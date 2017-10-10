@@ -30,7 +30,8 @@ class LoginController: UIViewController {
             
             self.present(alertController, animated: true, completion: nil);
             
-        } else {
+        }
+        else {
             
             FIRAuth.auth()?.signIn(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
                 
@@ -39,13 +40,17 @@ class LoginController: UIViewController {
                     // set groups array
                     self.ref = FIRDatabase.database().reference();
                     
-                    var storyboard = UIStoryboard(name: "Main", bundle: nil);
-                    var ivc = storyboard.instantiateViewController(withIdentifier: "Home");
-                    ivc.modalPresentationStyle = .custom;
-                    ivc.modalTransitionStyle = .crossDissolve;
-                    self.present(ivc, animated: true, completion: { _ in })
+                    // set logged user
+                    UserDefaults.standard.set(self.email.text!, forKey: userDetails.username);
+                    UserDefaults.standard.set(self.password.text!, forKey: userDetails.password);
                     
-                } else {
+                    let ivc = self.storyboard?.instantiateViewController(withIdentifier: "Home");
+                    ivc?.modalPresentationStyle = .custom;
+                    ivc?.modalTransitionStyle = .crossDissolve;
+                    self.present(ivc!, animated: true, completion: { _ in })
+                    
+                }
+                else {
                     
                     //Tells the user that there is an error and then gets firebase to tell them the error
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert);
@@ -62,6 +67,19 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         self.hideKeyboardWhenTappedAround();
+        
+        // no logged user
+        if let username = UserDefaults.standard.string(forKey: userDetails.username), let password = UserDefaults.standard.string(forKey: userDetails.password) {
+            if (username != "") {
+                FIRAuth.auth()?.signIn(withEmail: username, password: password) { (user, error) in
+                    let ivc = self.storyboard?.instantiateViewController(withIdentifier: "Home");
+                    ivc?.modalPresentationStyle = .custom;
+                    ivc?.modalTransitionStyle = .crossDissolve;
+                    self.present(ivc!, animated: true, completion: { _ in })
+                }
+            }
+        }
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     

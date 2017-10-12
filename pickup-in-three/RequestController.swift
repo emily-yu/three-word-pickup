@@ -107,7 +107,7 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
             (textField) in
         }
 
-        let defaultAction = UIAlertAction(title: "Submit", style: .cancel, handler: { (_) in
+        let defaultAction = UIAlertAction(title: "Submit", style: .default, handler: { (_) in
             
             // checking if all keywords were present
             if  (alertController.textFields![0].text?.range(of: self.requests[indexPath.row][0].lowercased()) != nil) &&
@@ -131,8 +131,11 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.present(alertController, animated: true, completion: nil);
             }
         });
-        
         alertController.addAction(defaultAction);
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil);
+        alertController.addAction(cancel);
+        
         self.present(alertController, animated: true, completion: nil);
         tableView.deselectRow(at: indexPath, animated: true);
     }

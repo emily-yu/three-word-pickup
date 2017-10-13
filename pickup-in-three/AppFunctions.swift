@@ -76,7 +76,7 @@ class appFunctions {
      * Transitions with a cross dissolve animation
      * @returns void
      */
-    func fadeTransition(identifiter: String) {
+    func fadeTransition(identifier: String) {
         if var topController = UIApplication.shared.keyWindow?.rootViewController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController

@@ -44,10 +44,7 @@ class LoginController: UIViewController {
                     UserDefaults.standard.set(self.email.text!, forKey: userDetails.username);
                     UserDefaults.standard.set(self.password.text!, forKey: userDetails.password);
                     
-                    let ivc = self.storyboard?.instantiateViewController(withIdentifier: "Home");
-                    ivc?.modalPresentationStyle = .custom;
-                    ivc?.modalTransitionStyle = .crossDissolve;
-                    self.present(ivc!, animated: true, completion: { _ in })
+                    appFunctions().fadeTransition(identifier: "Home");
                     
                 }
                 else {
@@ -72,10 +69,7 @@ class LoginController: UIViewController {
         if let username = UserDefaults.standard.string(forKey: userDetails.username), let password = UserDefaults.standard.string(forKey: userDetails.password) {
             if (username != "") {
                 FIRAuth.auth()?.signIn(withEmail: username, password: password) { (user, error) in
-                    let ivc = self.storyboard?.instantiateViewController(withIdentifier: "Home");
-                    ivc?.modalPresentationStyle = .custom;
-                    ivc?.modalTransitionStyle = .crossDissolve;
-                    self.present(ivc!, animated: true, completion: { _ in })
+                    appFunctions().fadeTransition(identifier: "Home");
                 }
             }
         }
@@ -125,11 +119,7 @@ class RegisterController: UIViewController {
                         "base64string": "default",
                     ]);
                     
-                    var storyboard = UIStoryboard(name: "Main", bundle: nil);
-                    var ivc = storyboard.instantiateViewController(withIdentifier: "Home");
-                    ivc.modalPresentationStyle = .custom
-                    ivc.modalTransitionStyle = .crossDissolve
-                    self.present(ivc, animated: true, completion: { _ in })
+                    appFunctions().fadeTransition(identifier: "Home");
                     
                 }
                 else {

@@ -29,12 +29,9 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBAction func logout(_ sender: Any) {
         try! FIRAuth.auth()!.signOut()
-        if let storyboard = self.storyboard {
-            UserDefaults.standard.set("", forKey: userDetails.username);
-            UserDefaults.standard.set("", forKey: userDetails.password);
-            let vc = storyboard.instantiateViewController(withIdentifier: "Login")
-            self.present(vc, animated: true, completion: nil)
-        }
+        UserDefaults.standard.set("", forKey: userDetails.username);
+        UserDefaults.standard.set("", forKey: userDetails.password);
+        appFunctions().fadeTransition(identifier: "Login");
     }
     @IBAction func tableChanged(_ sender: Any) {
         if (static_selector.selectedSegmentIndex == 0) {

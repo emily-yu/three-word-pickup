@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import Alamofire
 import SwiftyJSON
+import UIKit
 
 struct userDetails {
     static let username = ""
@@ -69,6 +70,23 @@ class appFunctions {
      */
     func refreshUserLines() -> [String] {
         return ["asdf"];
+    }
+    
+    /**
+     * Transitions with a cross dissolve animation
+     * @returns void
+     */
+    func fadeTransition(identifiter: String) {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            let ivc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier);
+            ivc.modalPresentationStyle = .custom
+            ivc.modalTransitionStyle = .crossDissolve
+            topController.present(ivc, animated: true, completion: { _ in })
+        }
     }
 }
 

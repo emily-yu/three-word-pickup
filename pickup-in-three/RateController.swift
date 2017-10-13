@@ -21,6 +21,8 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     var lineUser = [String]();
     var lineKey = [String]();
     
+    var userLines: [String] = [];
+    
     override func viewDidLoad() {
         // Do any additional setup after loading the view, typically from a nib.
         ref = FIRDatabase.database().reference();
@@ -29,6 +31,14 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         
         // secondary function contacting
 //        NotificationCenter.default.addObserver(self, selector: #selector(loadData(tableView: UITableView)), name: NSNotification.Name(rawValue: "loadData"), object: nil)
+        
+        // user favorite lines
+        userLines.removeAll();
+        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
+            for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                self.userLines.append(line.value as! String);
+            }
+        });
         
         // set up the tableView
         let cellReuseIdentifier = "cell";
@@ -94,6 +104,30 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // asdf -- import userlines
+        if (userLines.contains(lineText[indexPath.row])) {
+            let alert = UIAlertController(title: "Error", message: "You already have favorited this line.", preferredStyle: .alert);
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
+            alert.addAction(defaultAction);
+            self.present(alert, animated: true, completion: nil);
+        }
+        else {
+            let alertController = UIAlertController(title: "Confirm", message: "You are about to add this line from your favorites.", preferredStyle: .alert);
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil);
+            alertController.addAction(cancelAction);
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.userLines.append(self.lineText[indexPath.row]);
+                self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").child(String(snapshot.childrenCount)).setValue(self.lineText[indexPath.row]);
+                }
+            });
+            alertController.addAction(defaultAction);
+            
+            self.present(alertController, animated: true, completion: nil);
+        }
+        
         tableView.deselectRow(at: indexPath, animated: true);
     }
     

@@ -21,6 +21,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var dataStrings: [String] = []
     var filtered: [String] = []
     var filteredKey: [[String]] = []
+    var userLines: [String] = []
     var completedLoading = false;
     
     override func viewDidLoad() {
@@ -31,6 +32,16 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchBar.delegate = self
         
         ref = FIRDatabase.database().reference();
+        
+        // user favorite lines
+        userLines.removeAll();
+        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
+            for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                self.userLines.append(line.value as! String);
+            }
+        });
+        
+        // complete list of lines
         ref.child("lines").observeSingleEvent(of: .value, with: { (snapshot) in
             let totalCount = snapshot.childrenCount
             for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -94,10 +105,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.tableView.reloadData()
     }
     
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 0;
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (searchActive) {
             return filtered.count;
@@ -124,6 +131,47 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         return cell!;
+    }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // GET CURRENT TEXT
+        var referenceArray: [String]
+        
+        if (filtered.indices.contains(indexPath.row)) {
+            print(filtered[indexPath.row])
+            referenceArray = filtered;
+        }
+        else {
+            print(dataStrings[indexPath.row])
+            referenceArray = dataStrings;
+        }
+        
+        if (userLines.contains(referenceArray[indexPath.row])) {
+            let alert = UIAlertController(title: "Error", message: "You already have favorited this line.", preferredStyle: .alert);
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
+            alert.addAction(defaultAction);
+            self.present(alert, animated: true, completion: nil);
+        }
+        else {
+            let alertController = UIAlertController(title: "Confirm", message: "You are about to add this line from your favorites.", preferredStyle: .alert);
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil);
+            alertController.addAction(cancelAction);
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.userLines.append(referenceArray[indexPath.row]);
+                self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                    self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").child(String(snapshot.childrenCount)).setValue(referenceArray[indexPath.row]);
+                }
+            });
+            alertController.addAction(defaultAction);
+            
+            self.present(alertController, animated: true, completion: nil);
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true);
     }
     
     override func didReceiveMemoryWarning() {

@@ -313,7 +313,7 @@
                                                         <color key="titleColor" red="0.25523927810000002" green="0.3138494194" blue="0.4762791395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="downvote:" destination="nPF-84-Jwi" eventType="touchUpInside" id="Q10-yk-LnB"/>
+                                                        <action selector="downvote:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="cvz-zm-MX9"/>
                                                     </connections>
                                                 </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kbY-mx-rWk">

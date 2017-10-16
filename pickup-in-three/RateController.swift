@@ -19,7 +19,6 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     var lineText = [String]();
     var lineLike = [Int]();
     var lineUser = [String]();
-    var lineKey = [String]();
     
     var userLines: [String] = [];
     
@@ -28,9 +27,6 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         ref = FIRDatabase.database().reference();
         super.viewDidLoad();
         self.loadData();
-        
-        // secondary function contacting
-//        NotificationCenter.default.addObserver(self, selector: #selector(loadData(tableView: UITableView)), name: NSNotification.Name(rawValue: "loadData"), object: nil)
         
         // user favorite lines
         userLines.removeAll();
@@ -67,8 +63,10 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         cell?.likes?.numberOfLines = 0;
         
         cell?.username?.sizeToFit();
-        cell?.username?.text = lineUser[indexPath.row];
-        cell?.username?.numberOfLines = 0;
+        self.ref.child("users").child(lineUser[indexPath.row]).child("username").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            cell?.username?.text = snapshot.value as? String
+            cell?.username?.numberOfLines = 0;
+        }
         
         cell?.line?.sizeToFit();
         cell?.line?.text = lineText[indexPath.row];
@@ -90,10 +88,9 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (lineLike.count != 0) {
+        if (lineLike.count != 0 && indexPath.row < lineLike.count) {
             let height:CGFloat = calculateHeight(inString: String(lineText[indexPath.row]))
             if (height + 20.0 < 64) {
-                print("samefasjkdlf")
                 return 90;
             }
             return height + 20.0
@@ -104,7 +101,6 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // asdf -- import userlines
         if (userLines.contains(lineText[indexPath.row])) {
             let alert = UIAlertController(title: "Error", message: "You already have favorited this line.", preferredStyle: .alert);
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
@@ -132,74 +128,54 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     }
     
     func loadData() {
-        
-        print("ASDjfksdajfldsaf")
-        
+    
         lineText.removeAll();
         lineLike.removeAll();
         lineUser.removeAll();
-        lineKey.removeAll();
         
         let likeRef = ref.child("lines");
         likeRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            for line in snapshot.children {
-                self.lineText.append((line as AnyObject).key);
+            for rest in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                guard let restDict = rest.value as? [String: Any] else { continue }
+                let user = restDict["username"] as? String; // lineUser
+                let text = rest.key // lineText
+                let like = restDict["likes"] as? Int
+                self.lineUser.append(user!);
+                self.lineText.append(text);
+                self.lineLike.append(like!);
             }
-            let count = Int(snapshot.childrenCount);
-            
-            // line is the key to navigate through
-            for lines in self.lineText {
-                
-                // likes on each line
-                likeRef.child(lines).child("likes").observe(.value, with: {
-                    snapshot in
-                    self.lineLike.append(snapshot.value as! Int);
-                });
-                
-                // user on each line
-                likeRef.child(lines).child("keys").observe(.value, with: {
-                    snapshot in
-                    for line in snapshot.children {
-                        self.lineKey.append((line as AnyObject).value);
-                    }
-                });
-                
-                // user on each line
-                likeRef.child(lines).child("username").observe(.value, with: {
-                    snapshot in
-                    //                    self.lineUser.append(snapshot.value as! String);
-                    if (snapshot.value as! String != "0") {
-                        self.ref.child("users").child(snapshot.value as! String).child("username").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-                            self.lineUser.append(snapshot.value as! String)
-                            if (self.lineLike.count == count) {
-                                self.tableView.reloadData();
-                            }
-                        }
-                    }
-                    else {
-                        self.lineUser.append("same")
-                        if (self.lineLike.count == count) {
-                            self.tableView.reloadData();
-                        }
-                    }
-                });
-            }
+            self.tableView.reloadData()
         }
     }
 
+    // check if user has already upvoted
     @IBAction func upvote(_ sender: Any) {
-        print("accessed")
         if let cell = (sender as AnyObject).superview??.superview as? RateCell {
-            print(cell)
-            let indexPath = tableView.indexPath(for: cell)
-            print(indexPath?.row)
+            let indexPath = tableView.indexPath(for: cell);
+            let cellIndex = indexPath?.row
             self.ref.child("lines").child(lineText[(indexPath?.row)!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
                 if let int = snapshot.value {
                     let same = (int as! Int) + 1;
                     print(self.lineText[(indexPath?.row)!])
                     self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
-                    self.lineLike[(indexPath?.row)!] = same
-                    self.loadData();
+                    self.lineLike[cellIndex!] = same
+                    self.tableView.reloadData();
+                }
+            }
+        }
+    }
+    
+    @IBAction func downvote(_ sender: Any) {
+        if let cell = (sender as AnyObject).superview??.superview as? RateCell {
+            let indexPath = tableView.indexPath(for: cell);
+            let cellIndex = indexPath?.row
+            self.ref.child("lines").child(lineText[(indexPath?.row)!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                if let int = snapshot.value {
+                    let same = (int as! Int) - 1;
+                    print(self.lineText[(indexPath?.row)!])
+                    self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
+                    self.lineLike[cellIndex!] = same
+                    self.tableView.reloadData();
                 }
             }
         }
@@ -232,31 +208,7 @@ class RateCell: UITableViewCell {
     @IBOutlet var likes: UILabel!
     @IBOutlet var username: UILabel!
     @IBOutlet var line: UITextView!
-    @IBAction func upvote(_ sender: Any) {
-//        ref.child("lines").child(lineText[id!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-//            if let int = snapshot.value {
-//                let same = (int as! Int) + 1;
-//                self.ref.child("lines").child(lineText[self.id!]).child("likes").setValue(same);
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil, userInfo: [self.tableView()!: UITableView.self]);
-//                // refresh data
-//                // alert to tell that they upvoted?
-//            }
-//        }
-    }
-    @IBAction func downvote(_ sender: Any) {
-//        ref.child("lines").child(lineText[id!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-//            if let int = snapshot.value {
-//                let same = (int as! Int) - 1;
-//                if (same != 0) {
-//                    self.ref.child("lines").child(lineText[self.id!]).child("likes").setValue(same);
-//                    // refresh data
-//                    // alert to tell that they upvoted?
-//                }
-//                else {
-//                    // alert to tell them they can't
-//                }
-//            }
-//        }
+
     }
 }
 

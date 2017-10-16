@@ -150,33 +150,75 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
 
     // check if user has already upvoted
     @IBAction func upvote(_ sender: Any) {
-        if let cell = (sender as AnyObject).superview??.superview as? RateCell {
-            let indexPath = tableView.indexPath(for: cell);
-            let cellIndex = indexPath?.row
-            self.ref.child("lines").child(lineText[(indexPath?.row)!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-                if let int = snapshot.value {
-                    let same = (int as! Int) + 1;
-                    print(self.lineText[(indexPath?.row)!])
-                    self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
-                    self.lineLike[cellIndex!] = same
-                    self.tableView.reloadData();
+        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("liked").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            let count = snapshot.childrenCount
+            if let cell = (sender as AnyObject).superview??.superview as? RateCell {
+                let indexPath = self.tableView.indexPath(for: cell);
+                let cellIndex = indexPath?.row
+                var exists = false;
+                
+                for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    if (line.value as? String == self.lineText[(indexPath?.row)!]) {
+                        exists = true;
+                    }
                 }
+                
+                if !(exists) {
+                    self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                        if let int = snapshot.value {
+                            let same = (int as! Int) + 1;
+                            print(self.lineText[(indexPath?.row)!])
+                            self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
+                            self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("liked").child(String(count)).setValue(self.lineText[(indexPath?.row)!])
+                            self.lineLike[cellIndex!] = same
+                            self.tableView.reloadData();
+                        }
+                    }
+                }
+                else {
+                    let alert = UIAlertController(title: "Error", message: "You already have rated this line.", preferredStyle: .alert);
+                    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
+                    alert.addAction(defaultAction);
+                    self.present(alert, animated: true, completion: nil);
+                }
+                
             }
         }
     }
     
     @IBAction func downvote(_ sender: Any) {
-        if let cell = (sender as AnyObject).superview??.superview as? RateCell {
-            let indexPath = tableView.indexPath(for: cell);
-            let cellIndex = indexPath?.row
-            self.ref.child("lines").child(lineText[(indexPath?.row)!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-                if let int = snapshot.value {
-                    let same = (int as! Int) - 1;
-                    print(self.lineText[(indexPath?.row)!])
-                    self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
-                    self.lineLike[cellIndex!] = same
-                    self.tableView.reloadData();
+        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("liked").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            let count = snapshot.childrenCount
+            if let cell = (sender as AnyObject).superview??.superview as? RateCell {
+                let indexPath = self.tableView.indexPath(for: cell);
+                let cellIndex = indexPath?.row
+                var exists = false;
+                
+                for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                    if (line.value as? String == self.lineText[(indexPath?.row)!]) {
+                        exists = true;
+                    }
                 }
+
+                if !(exists) {
+                    self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+                        if let int = snapshot.value {
+                            let same = (int as! Int) - 1;
+                            print(self.lineText[(indexPath?.row)!])
+                            self.ref.child("lines").child(self.lineText[(indexPath?.row)!]).child("likes").setValue(same);
+                            self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("liked").child(String(count)).setValue(self.lineText[(indexPath?.row)!])
+                            self.lineLike[cellIndex!] = same
+                            self.tableView.reloadData();
+                        }
+                    }
+                }
+                else {
+                    let alert = UIAlertController(title: "Error", message: "You already have rated this line.", preferredStyle: .alert);
+                    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil);
+                    alert.addAction(defaultAction);
+                    self.present(alert, animated: true, completion: nil);
+                }
+                
             }
         }
     }
@@ -209,6 +251,5 @@ class RateCell: UITableViewCell {
     @IBOutlet var username: UILabel!
     @IBOutlet var line: UITextView!
 
-    }
 }
 

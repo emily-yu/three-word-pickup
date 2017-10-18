@@ -113,7 +113,14 @@ class RegisterController: UIViewController {
                         "favorites": [
                             "0": "default",
                         ],
+                        "liked" : [
+                            "0": "default",
+                        ],
                         "lines" : [
+                            "0": "default",
+                        ],
+                        "points" : 0,
+                        "requests" : [
                             "0": "default",
                         ],
                         "base64string": "default",

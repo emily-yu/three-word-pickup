@@ -248,36 +248,63 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
 //                            self.postedLines.append(line.value as! String);
 //                            self.postedLinesKey.append(line.key);
                             print("USER")
-                            print(line)
+                            print(line) // user
                             print(restDict!["favorites"])
                             print("FAVORITES:")
                             let favoriteDict = restDict!["favorites"] as? [String]
-                            print("KEYS:")
-                            let keyDict = KeyDict!["favorites"] as? [String]
-                            print(keyDict)
-                            print(line.key)
+                            print(favoriteDict)
+//                            print("KEYS:")
+//                            print(restDict!["favorites"])
+//                            print(type(of: restDict!["favorites"]))
 //                            print("SAME")
-////                            for favorite in favoriteDict! {
-////                                print(favorite)
-////                                if (favorite == self.favoritesLines[indexPath.row]) {
-////                                    print("----------------------------")
-////                                    print("same lines")
-////                                    print("user: \(line.key)")
-////                                    print(favorite)
-////
-////                                    print("KEY: \(favorite.key)")
-////                                    print(self.favoritesLines[indexPath.row])
-////                                    print("----------------------------")
-////                                }
-////                            }
+                            
+                            
+                            // TODO: TEST WITH MULTIPLE USERS
+                            for favorite in favoriteDict! {
+                                if (favorite == self.postedLines[indexPath.row]) { // same line
+                                    print(favorite) // line being scanned for
+                                    print(line.key) // user to delete from
+                                    if (line.key == FIRAuth.auth()!.currentUser!.uid) {
+                                        // remove from postedLines.child(postedLines[indexPaht.row])
+                                        self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("lines").child(self.postedLinesKey[indexPath.row]).removeValue { (error, ref) in
+                                            if error != nil {
+                                                print("error \(error)")
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        // remove from favorites.child()
+                                        self.ref.child("users").child(line.key).child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
+                                            var myArrayKey = [String]()
+                                            var myArray = [String]()
+                                            for child in snapshot.children {
+                                                myArrayKey.append((child as AnyObject).key as String)
+                                                myArray.append((child as AnyObject).value)
+                                            }
+                                            let pos = myArray.index(of: favorite);
+                                            print("BLEUGH")
+                                            print(myArray)
+                                            print("postion = \(pos!)") // index
+                                            
+                                            self.ref.child("users").child(line.key).child("favorites").child(String(describing: pos!)).removeValue { (error, ref) in
+                                                if error != nil {
+                                                    print("error \(error)")
+                                                }
+                                                print("SAME we dun it")
+                                            }
+                                        });
+                                    }
+                                    print(self.postedLines[indexPath.row])
+                                }
+                            }
                         }
                     }
                 }
                 
-//                self.postedLines.remove(at: indexPath.row);
-//                self.postedLinesKey.remove(at: indexPath.row);
-//                self.tableData = self.postedLines;
-//                self.tableView.reloadData();
+                self.postedLines.remove(at: indexPath.row);
+                self.postedLinesKey.remove(at: indexPath.row);
+                self.tableData = self.postedLines;
+                self.tableView.reloadData();
         
             });
             alertController.addAction(defaultAction);

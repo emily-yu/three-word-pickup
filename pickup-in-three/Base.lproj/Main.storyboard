@@ -247,7 +247,7 @@
                             <constraint firstItem="djq-4S-PiB" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" constant="2" id="yNa-ld-wOL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Create" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="edit" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="createTextField" destination="xdH-CQ-WBg" id="uJa-z1-fbu"/>
                         <outlet property="keyword1" destination="5O7-ho-uow" id="cYa-2I-QuG"/>
@@ -376,7 +376,7 @@
                             <constraint firstAttribute="trailing" secondItem="YnF-xg-KGQ" secondAttribute="trailing" id="zjA-gc-Q6Q"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Rate" image="first" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Rate" image="customer" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="tableView" destination="YnF-xg-KGQ" id="41h-Hv-wTe"/>
                     </connections>
@@ -464,7 +464,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.60946720838546753" green="0.66126364469528198" blue="0.74906647205352783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="first" id="Thp-10-gCc"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="loupe" id="Thp-10-gCc"/>
                     <connections>
                         <outlet property="searchBar" destination="4nx-DI-dHw" id="a22-o1-d22"/>
                         <outlet property="tableView" destination="uig-U2-hjM" id="HIh-fe-2pd"/>
@@ -585,7 +585,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.60946720838546753" green="0.66126364469528198" blue="0.74906647205352783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="Tg7-bb-9gx"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="users" id="Tg7-bb-9gx"/>
                     <connections>
                         <outlet property="aboutMe" destination="PIr-tr-nG8" id="h5V-Bd-bhh"/>
                         <outlet property="favoriteTable" destination="9PS-wb-ydK" id="I9o-Hk-mpg"/>
@@ -791,7 +791,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKj-Xo-g5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-509" y="441"/>
+            <point key="canvasLocation" x="-982" y="440"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -813,7 +813,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-183" y="-1"/>
         </scene>
         <!--Request-->
         <scene sceneID="QLh-8R-9rV">
@@ -887,7 +887,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.60946720840000002" green="0.66126364469999999" blue="0.74906647209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Request" id="yYI-1Y-oed"/>
+                    <tabBarItem key="tabBarItem" title="Request" image="decision-making" id="yYI-1Y-oed"/>
                     <connections>
                         <outlet property="tableView" destination="GYi-ea-wap" id="Sst-9q-EFU"/>
                     </connections>
@@ -898,8 +898,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="customer" width="25" height="25"/>
+        <image name="decision-making" width="25" height="25"/>
+        <image name="edit" width="25" height="24"/>
         <image name="icon50px" width="25" height="21"/>
+        <image name="loupe" width="25" height="25"/>
+        <image name="users" width="25" height="25"/>
         <image name="vroomvroom" width="720" height="521"/>
     </resources>
 </document>

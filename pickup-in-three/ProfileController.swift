@@ -88,7 +88,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         // set name
         let currentUserRef = self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid);
         currentUserRef.child("username").observeSingleEvent(of: .value, with: { (snapshot) in
-            self.name.text = snapshot.value as! String;
+            self.name.text = snapshot.value as? String;
         });
         
         // set score
@@ -212,7 +212,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
             self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").child(self.favoritesLinesKey[indexPath.row]).removeValue { (error, ref) in
                     if error != nil {
-                        print("error \(error)")
+                        print("error \(String(describing: error))")
                     }
                 }
                 self.favoritesLines.remove(at: indexPath.row);
@@ -234,30 +234,12 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (_) in
             
-                // TODO: go through each user's details and delete it if they favorited it
                 // delete every instance of that line
                 self.ref.child("users").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-                    print("YA")
-                    print(snapshot.value)
-                    print(self.favoritesLines[indexPath.row])
                     for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
                         let restDict = line.value as? [String: Any];
-                        let KeyDict = line.key as? [String: Any];
-//                        let userRef = self.ref.child["text"] as? String;
                         if (line.key != "0") {
-//                            self.postedLines.append(line.value as! String);
-//                            self.postedLinesKey.append(line.key);
-                            print("USER")
-                            print(line) // user
-                            print(restDict!["favorites"])
-                            print("FAVORITES:")
                             let favoriteDict = restDict!["favorites"] as? [String]
-                            print(favoriteDict)
-//                            print("KEYS:")
-//                            print(restDict!["favorites"])
-//                            print(type(of: restDict!["favorites"]))
-//                            print("SAME")
-                            
                             
                             // TODO: TEST WITH MULTIPLE USERS
                             for favorite in favoriteDict! {
@@ -268,7 +250,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                                         // remove from postedLines.child(postedLines[indexPaht.row])
                                         self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("lines").child(self.postedLinesKey[indexPath.row]).removeValue { (error, ref) in
                                             if error != nil {
-                                                print("error \(error)")
+                                                print("error \(String(describing: error))")
                                             }
                                         }
                                     }
@@ -288,13 +270,11 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                                             
                                             self.ref.child("users").child(line.key).child("favorites").child(String(describing: pos!)).removeValue { (error, ref) in
                                                 if error != nil {
-                                                    print("error \(error)")
+                                                    print("error \(String(describing: error))")
                                                 }
-                                                print("SAME we dun it")
                                             }
                                         });
                                     }
-                                    print(self.postedLines[indexPath.row])
                                 }
                             }
                         }
@@ -323,7 +303,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
 
                 self.ref.child("request").child(self.requestsKey[indexPath.row]).removeValue { (error, ref) in
                     if error != nil {
-                        print("error \(error)")
+                        print("error \(String(describing: error))")
                     }
                 }
                 

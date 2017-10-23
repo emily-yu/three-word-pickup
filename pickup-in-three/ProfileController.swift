@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import Firebase
 
+// check if need to reload respective tables
+var favoriteReload = false;
+var userLineReload = false;
+var requestReload = false;
+
 class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var tableView: UITableView!
@@ -69,12 +74,28 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.present(imagePicker, animated: true, completion: nil);
     }
     
+    // reloading data from other controllers
+    func loadList(){
+        print("reached")
+        if (favoriteReload || userLineReload || requestReload) {
+            print("reloading table data")
+            loadData();
+            self.tableView.reloadData()
+        }
+    }
+    
     // table views
     @IBOutlet var favoriteTable: UITableView!
     @IBOutlet var pickUpTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadProfileData"), object: nil)
+        
+        print(favoriteReload)
+        print(userLineReload)
+        print(requestReload)
         
         let cellReuseIdentifier = "cell";
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier);
@@ -115,7 +136,12 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         });
         
+        loadData();
+    }
+    
+    func loadData() {
         // retrieve data
+        let currentUserRef = self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid);
         postedLines.removeAll();
         postedLinesKey.removeAll();
         currentUserRef.child("lines").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
@@ -148,7 +174,6 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
             }
         }
-        
     }
     
     private func base64PaddingWithEqual(encoded64: String) -> String {
@@ -317,7 +342,6 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             self.present(alertController, animated: true, completion: nil);
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

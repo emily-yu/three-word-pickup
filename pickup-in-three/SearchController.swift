@@ -33,15 +33,25 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         ref = FIRDatabase.database().reference();
         
-        // user favorite lines
+        loadData();
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadSearchData"), object: nil)
+
+    }
+    
+    func loadData() {
+        // complete list of lines
+        dataStrings.removeAll()
+        dataKeys.removeAll()
         userLines.removeAll();
+        
         self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
             for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 self.userLines.append(line.value as! String);
             }
         });
         
-        // complete list of lines
+        
         ref.child("lines").observeSingleEvent(of: .value, with: { (snapshot) in
             let totalCount = snapshot.childrenCount
             for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -59,10 +69,9 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                         self.completedLoading = true
                     }
                 });
-
+                
             }
         });
-    
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -171,6 +180,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.present(alertController, animated: true, completion: nil);
         }
         
+        favoriteReload = true;
         tableView.deselectRow(at: indexPath, animated: true);
     }
     

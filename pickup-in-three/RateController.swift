@@ -28,6 +28,8 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         super.viewDidLoad();
         self.loadData();
         
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadRateData"), object: nil)
+        
         // user favorite lines
         userLines.removeAll();
         self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -128,7 +130,6 @@ class RateController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     }
     
     func loadData() {
-    
         lineText.removeAll();
         lineLike.removeAll();
         lineUser.removeAll();

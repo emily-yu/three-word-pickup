@@ -12,7 +12,7 @@ import Alamofire
 import Firebase
 import SwiftyJSON
 
-class CreateController: UIViewController {
+class CreateController: UIViewController, UITabBarControllerDelegate {
     
     var ref: FIRDatabaseReference!
     @IBOutlet var scrollView: UIScrollView!
@@ -51,6 +51,8 @@ class CreateController: UIViewController {
                     "likes" : 0,
                     "username" : FIRAuth.auth()!.currentUser!.uid,
             ] as NSDictionary);
+            
+            userLineReload = true;
         }
         else {
             let alertController = UIAlertController(title: "Error", message: "Please use the above words to create your pickup line.", preferredStyle: .alert);
@@ -73,7 +75,7 @@ class CreateController: UIViewController {
             (createTextField.text.lowercased().range(of: keyword2.text!.lowercased()) != nil) &&
             (createTextField.text.lowercased().range(of: keyword3.text!.lowercased()) != nil) {
             
-            self.ref.child("lines").child(self.textField.text).setValue([
+            self.ref.child("lines").child(self.createTextField.text).setValue([
                 "keys": [
                     "1" : "\(keyword1.text!)",
                     "2" : "\(keyword2.text!)",
@@ -82,6 +84,7 @@ class CreateController: UIViewController {
                 "likes" : 0,
                 "username" : FIRAuth.auth()!.currentUser!.uid,
             ] as NSDictionary);
+            userLineReload = true;
         }
     }
     @IBAction func clearFields(_ sender: Any) {
@@ -102,6 +105,31 @@ class CreateController: UIViewController {
         self.hideKeyboardWhenTappedAround();
         refreshAll();
         ref = FIRDatabase.database().reference();
+        self.tabBarController?.delegate = self;
+    }
+    
+    // UITabBarControllerDelegate
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("Selected view controller")
+        let tabBarIndex = tabBarController.selectedIndex
+        switch tabBarIndex {
+        case 0:
+            print("same0")
+        case 1:
+            print("same1")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRateData"), object: nil)
+        case 2:
+            print("same2")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadSearchData"), object: nil)
+        case 3:
+            print("same3")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRequestData"), object: nil)
+        case 4:
+            print("same4")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadProfileData"), object: nil)
+        default:
+            print("error")
+        }
     }
 
     override func didReceiveMemoryWarning() {

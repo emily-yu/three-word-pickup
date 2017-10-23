@@ -49,6 +49,7 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
                     let count = Int(snapshot.childrenCount + 1);
                     self.ref.child("request").child(String(count)).setValue(requestString);
                     self.ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("requests").child(String(count)).setValue(requestString);
+                    requestReload = true;
                     self.requests.append([word1, word2, word3]);
                     self.tableView.reloadData();
                 }
@@ -65,8 +66,18 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         ref = FIRDatabase.database().reference();
+        loadData();
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell");
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadRequestData"), object: nil)
+    }
+    
+    func loadData() {
+        requests.removeAll();
         ref.child("request").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for line in snapshot.children {
                 if ((line as AnyObject).key != "0") {
@@ -76,10 +87,6 @@ class RequestController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
             }
         }
-        
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell");
-        tableView.delegate = self;
-        tableView.dataSource = self;
     }
     
     // tableView -- START MARKER

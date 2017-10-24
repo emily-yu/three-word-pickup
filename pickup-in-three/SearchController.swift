@@ -27,19 +27,20 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
-        
         ref = FIRDatabase.database().reference();
         
         loadData();
     
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadSearchData"), object: nil)
-
     }
     
     func loadData() {
+        
+        print(filtered)
+        print(filteredKey)
+        print(dataKeys)
+        print(dataStrings)
+        
         // complete list of lines
         dataStrings.removeAll()
         dataKeys.removeAll()
@@ -57,7 +58,10 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
             for line in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 
                 // this should be changed to a nicer iterator
-                self.dataStrings.append(line.key);
+                if !(self.dataStrings.contains(line.key)) {
+                    self.dataStrings.append(line.key);
+                }
+//                self.dataStrings.append(line.key);
                 self.ref.child("lines").child(line.key).child("keys").observeSingleEvent(of: .value, with: { (snapshot) in
                     var keyArray: [String] = []
                     for lineasdf in snapshot.children {
@@ -65,8 +69,12 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                     }
                     self.dataKeys.append(keyArray);
                     if (self.dataKeys.count == Int(totalCount)) {
+                        self.tableView.delegate = self
+                        self.tableView.dataSource = self
+                        self.searchBar.delegate = self
                         self.tableView.reloadData();
                         self.completedLoading = true
+                        
                     }
                 });
                 
@@ -93,14 +101,16 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
         filtered.removeAll()
+        filteredKey.removeAll();
         for (index, dataPoint) in dataKeys.enumerated() {
             keywordIterator: for keyword in dataPoint {
-                if ((keyword.lowercased().range(of: searchText.lowercased())) != nil) {
+                if ((keyword.lowercased().range(of: searchText.lowercased())) != nil
+                    && index < dataPoint.count - 1
+                    && !(filtered.contains(dataStrings[index]))) {
                     print(dataStrings[index])
                     print(dataKeys[index])
                     filtered.append(dataStrings[index])
                     filteredKey.append(dataKeys[index])
-                    break keywordIterator
                 }
             }
         }
@@ -111,6 +121,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         else {
             searchActive = true;
         }
+        
         self.tableView.reloadData()
     }
     
